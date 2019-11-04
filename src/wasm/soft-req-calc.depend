@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1572877441 source:d:\progs\cpp\soft-req-calc\abstractmetric.cpp
+	"AbstractMetric.h"
+
+1572817724 d:\progs\cpp\soft-req-calc\abstractmetric.h
+	<vector>
+	"ICalculation.h"
+
+1572877369 d:\progs\cpp\soft-req-calc\icalculation.h
+
+1572878286 source:d:\progs\cpp\soft-req-calc\basicmetricimplementation.cpp
+	"BasicMetricImplementation.h"
+
+1572817773 d:\progs\cpp\soft-req-calc\basicmetricimplementation.h
+	<vector>
+	<algorithm>
+	"AbstractMetric.h"
+	"MetricWithCoef.h"
+	"limitWithCoef.h"
+
+1572878603 d:\progs\cpp\soft-req-calc\metricwithcoef.h
+	<algorithm>
+	"ICalculation.h"
+	"AbstractMetric.h"
+	"limitWithCoef.h"
+
+1572802376 d:\progs\cpp\soft-req-calc\limitwithcoef.h
+
+1572877244 d:\progs\cpp\soft-req-calc\utility.h
+	<cstdlib>
+
+1572877136 source:d:\progs\cpp\soft-req-calc\limitwithcoef.cpp
+	"limitWithCoef.h"
+
+1572877182 source:d:\progs\cpp\soft-req-calc\metricwithcoef.cpp
+	"MetricWithCoef.h"
+
+1572877066 source:d:\progs\cpp\soft-req-calc\techtaskcalculation.cpp
+
+1572877189 source:d:\progs\cpp\soft-req-calc\utility.cpp
+	"Utility.h"
+
