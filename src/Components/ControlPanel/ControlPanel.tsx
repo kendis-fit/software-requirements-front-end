@@ -5,7 +5,7 @@ import { ControlBlock, ControlItemBlock } from "../Styles/Block";
 
 const ControlPanel = () => {
     return(
-        <ControlBlock Height="25px">
+        <ControlBlock Height="25px" Type="secondary">
             <ControlItemBlock>
                 <TextUnderline>P</TextUnderline>
                 <span>roject</span>

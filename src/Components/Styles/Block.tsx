@@ -1,18 +1,36 @@
 import styled from "styled-components";
 
 import Colors from "../../Constants/Colors";
-import ISizeStyledComponent from "../../Interfaces/ISizeStyledComponent";
+import ISize from "../../Interfaces/StyledComponents/ISize";
+import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
 
-export const FlexBlockRow = styled.div`
+interface IControlBlock extends ISize, ITypeColor
+{
+
+}
+
+export const FlexBlock = styled.div`
     display: flex;
 `;
 
-export const ControlBlock = styled.nav<ISizeStyledComponent>`
+export const ControlBlock = styled.nav<IControlBlock>`
     display: flex;
-    background-color: ${Colors.LightGray};
     line-height: 25px;
+    ${props => {
+
+        switch (props.Type)
+        {
+            case "primary":
+                return props.OutLine ? `border: 1px solid ${Colors.Blue}` : `background-color: ${Colors.Blue}`;
+            case "secondary":
+                return props.OutLine ? `border: 1px solid ${Colors.LightGray}` : `background-color: ${Colors.LightGray}`;
+            default:
+                return "background-color: white";
+        }
+    }}
+    ${props => props.Rounde ? `border-radius: ${props.Rounde}` : ""};
     ${props => props.Height ? `height: ${props.Height}` : `height: 25px`}
-    ${props => props.Width ? `width:  ${props.Width}` : `width: 100vw`}
+    ${props => props.Width ? `width:  ${props.Width}` : `width: 100%`}
 `;
 
 export const ControlItemBlock = styled.button`
