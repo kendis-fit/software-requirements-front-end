@@ -1,9 +1,14 @@
 import React from "react";
 
+//import { FlexBlock } from "./Styles/Block";
+import ControlPanel from "./ControlPanel/ControlPanel";
+
+import "../root.css";
+
 const App = () => {
   return (
-    <div className="App">
-      <header>Hello world</header>
+    <div>
+      <ControlPanel></ControlPanel>
     </div>
   );
 }
