@@ -6,12 +6,10 @@ import LeftPanel from "./LeftPanel/LeftPanel";
 
 import "../root.css";
 
-import MenuItems from "../Constants/MenuItems";
-
 const App = () => {
 	return (
 		<div>
-			<ControlPanel Menu={MenuItems}></ControlPanel>
+			<ControlPanel></ControlPanel>
 			<FlexBlock>
 				<LeftPanel></LeftPanel>
 			</FlexBlock>

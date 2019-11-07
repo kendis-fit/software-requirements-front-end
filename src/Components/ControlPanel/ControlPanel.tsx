@@ -2,29 +2,23 @@ import React from "react";
 
 import { TextUnderline } from "../Styles/Text";
 import { ControlBlock, ControlItemBlock } from "../Styles/Block";
-import IMenuItem from "../../Interfaces/IMenuItem";
 
-interface IControlPanel
-{
-    Menu: Array<IMenuItem>
-}
-
-const ControlPanel = (props: IControlPanel) => {
+const ControlPanel = () => {
 
     return(
         <ControlBlock Height="25px" Type="secondary">
-            {
-                props.Menu.map(i => {
-                    
-                    if (i.Name.length <= 1)
-                        throw new Error("Length name must be more than 1");
-
-                    return <ControlItemBlock>
-                        <TextUnderline>{i.Name[0]}</TextUnderline>
-                        <span>{i.Name.substr(1)}</span>
-                    </ControlItemBlock>
-                })
-            }
+            <ControlItemBlock>
+                <TextUnderline>P</TextUnderline>
+                <span>roject</span>
+            </ControlItemBlock>
+            <ControlItemBlock>
+                <TextUnderline>S</TextUnderline>
+                <span>ettings</span>
+            </ControlItemBlock>
+            <ControlItemBlock>
+                <TextUnderline>A</TextUnderline>
+                <span>bout</span>
+            </ControlItemBlock>
         </ControlBlock>
     );
 }
