@@ -16,21 +16,11 @@ public:
 	MetricWithCoef(AbstractMetric* m, const float c,
 		           const float expectedMax,  std::vector<limitWithCoef>& lims);
 
-    MetricWithCoef(const MetricWithCoef& a) :
-        metric(a.metric),
-        coef(a.coef),
-        expectedMaxResult(a.expectedMaxResult),
-        limits(a.limits) {}
+    MetricWithCoef(const MetricWithCoef& a);
 
-    MetricWithCoef& operator=(const MetricWithCoef& a)
-    {
-        metric = a.metric;
-        coef = a.coef;
-        expectedMaxResult = a.expectedMaxResult;
-        limits = a.limits;
+    MetricWithCoef(MetricWithCoef&& a) = default;
 
-        return *this;
-    }
+    MetricWithCoef& operator=(const MetricWithCoef& a);
 
 	MetricWithCoef() = delete;
 
