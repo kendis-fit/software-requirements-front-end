@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 import Colors from "../../Constants/Colors";
+import IPosition from "../../Interfaces/IPosition";
 import ISize from "../../Interfaces/StyledComponents/ISize";
 import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
 
-interface IControlBlock extends ISize, ITypeColor
-{
-
-}
+interface IControlBlock extends ISize, ITypeColor {}
+interface IContextBlock extends ISize, IPosition {}
 
 export const FlexBlock = styled.div`
     display: flex;
@@ -43,4 +42,12 @@ export const ControlItemBlock = styled.button`
     :focus {
         background-color: ${Colors.Gray};
     }
+`;
+
+export const ContextBlock = styled.div<IContextBlock>`
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    ${props => props.X && `left: ${props.X}`};
+    ${props => props.Y && `top: ${props.Y}`};
 `;

@@ -6,15 +6,17 @@ import LeftPanel from "./LeftPanel/LeftPanel";
 
 import "../root.css";
 
+import MenuItems from "../Constants/MenuItems";
+
 const App = () => {
-  return (
-    <div>
-      <ControlPanel></ControlPanel>
-      <FlexBlock>
-        <LeftPanel></LeftPanel>
-      </FlexBlock>
-    </div>
-  );
+	return (
+		<div>
+			<ControlPanel Menu={MenuItems}></ControlPanel>
+			<FlexBlock>
+				<LeftPanel></LeftPanel>
+			</FlexBlock>
+		</div>
+	);
 }
 
 export default App;
