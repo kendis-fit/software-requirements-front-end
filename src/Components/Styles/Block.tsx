@@ -45,9 +45,9 @@ export const ControlItemBlock = styled.button`
 `;
 
 export const ContextBlock = styled.div<IContextBlock>`
-    display: flex;
     position: absolute;
     z-index: 10;
+    background-color: ${Colors.LightGray};
     ${props => props.X && `left: ${props.X}`};
     ${props => props.Y && `top: ${props.Y}`};
 `;

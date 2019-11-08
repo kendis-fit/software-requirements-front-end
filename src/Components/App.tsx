@@ -1,14 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { FlexBlock } from "./Styles/Block";
 import ControlPanel from "./ControlPanel/ControlPanel";
 import LeftPanel from "./LeftPanel/LeftPanel";
 
-import "../root.css";
+import { ShowMenu } from "../Actions/MenuActions";
 
-const App = () => {
+import "../root.css";
+import EMenu from "../Enumerations/EMenu";
+
+interface IApp
+{
+	ShowMenu(): void
+}
+
+const App = ({ ShowMenu }: IApp) => {
 	return (
-		<div>
+		<div onClick={(): void => ShowMenu()}>
 			<ControlPanel></ControlPanel>
 			<FlexBlock>
 				<LeftPanel></LeftPanel>
@@ -17,4 +26,8 @@ const App = () => {
 	);
 }
 
-export default App;
+const mapDispatchToProps = (dispatch: any) => ({
+	ShowMenu: () => dispatch(ShowMenu(EMenu.NONE))
+});
+
+export default connect(null, mapDispatchToProps)(App);
