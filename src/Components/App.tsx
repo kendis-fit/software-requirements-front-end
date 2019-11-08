@@ -12,12 +12,12 @@ import EMenu from "../Enumerations/EMenu";
 
 interface IApp
 {
-	ShowMenu(): void
+	ShowMenu: (e: any) => void;
 }
 
 const App = ({ ShowMenu }: IApp) => {
 	return (
-		<div onClick={(): void => ShowMenu()}>
+		<div onClick={(e: any) => { ShowMenu(e) } }>
 			<ControlPanel></ControlPanel>
 			<FlexBlock>
 				<LeftPanel></LeftPanel>
@@ -27,7 +27,9 @@ const App = ({ ShowMenu }: IApp) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-	ShowMenu: () => dispatch(ShowMenu(EMenu.NONE))
+	ShowMenu: (e: any) => {
+		if (!e.target.dataset.menu && !e.target.parentNode.dataset.menu) dispatch(ShowMenu(EMenu.NONE))
+	}
 });
 
 export default connect(null, mapDispatchToProps)(App);

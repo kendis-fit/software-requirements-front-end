@@ -21,15 +21,15 @@ const ControlPanel = ({ Menu, ShowMenu }: IControlPanel) => {
     return(
         <>
             <ControlBlock Height="25px" Type="secondary">
-                <ControlItemBlock ref={buttonProject} onClick={(): number => setTimeout((): void => ShowMenu(EMenu.PROJECT), 1)}>
+                <ControlItemBlock data-menu={true} ref={buttonProject} onClick={(): void => ShowMenu(EMenu.PROJECT)}>
                     <TextUnderline>P</TextUnderline>
                     <span>roject</span>
                 </ControlItemBlock>
-                <ControlItemBlock>
+                <ControlItemBlock data-menu={true}>
                     <TextUnderline>S</TextUnderline>
                     <span>ettings</span>
                 </ControlItemBlock>
-                <ControlItemBlock>
+                <ControlItemBlock data-menu={true}>
                     <TextUnderline>A</TextUnderline>
                     <span>bout</span>
                 </ControlItemBlock>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Colors from "../../Constants/Colors";
 import IPosition from "../../Interfaces/IPosition";
 import ISize from "../../Interfaces/StyledComponents/ISize";
+import IBorder from "../../Interfaces/StyledComponents/IBorder";
 import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
 
 interface IControlBlock extends ISize, ITypeColor {}
@@ -47,7 +48,22 @@ export const ControlItemBlock = styled.button`
 export const ContextBlock = styled.div<IContextBlock>`
     position: absolute;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
     background-color: ${Colors.LightGray};
     ${props => props.X && `left: ${props.X}`};
     ${props => props.Y && `top: ${props.Y}`};
+    ${props => props.Height && `height: ${props.Height}`};
+    ${props => props.Width && `width: ${props.Width}`};
+`;
+
+export const ContextItemBlock = styled.div<IBorder>`
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    ${props => props.IsBoardBottom && `border-bottom: 1px solid ${Colors.Gray}`};
+
+    :hover {
+        background-color: ${Colors.Gray};
+    }
 `;
