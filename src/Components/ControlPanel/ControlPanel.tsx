@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import { TextUnderline } from "../Styles/Text";
-import { ShowMenu } from "../../Actions/MenuActions";
 import { ControlBlock, ControlItemBlock } from "../Styles/Block";
 
 import EMenu from "../../Enumerations/EMenu";
@@ -10,7 +8,7 @@ import IMenu from "../../Interfaces/IMenu";
 
 interface IControlPanel
 {
-    ShowMenu: (name: IMenu) => void;
+    ShowMenu: (menu: IMenu) => void;
 }
 
 const ControlPanel = ({ ShowMenu }: IControlPanel) => {
@@ -47,8 +45,4 @@ const ControlPanel = ({ ShowMenu }: IControlPanel) => {
     );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    ShowMenu: (menu: IMenu) => dispatch(ShowMenu(menu))
-});
-
-export default connect(null, mapDispatchToProps)(ControlPanel);
+export default ControlPanel;

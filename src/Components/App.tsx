@@ -1,31 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import OverMenu from "./OverMenu";
+import LeftPanel from "./LeftPanel/LeftPanel";
 import { FlexBlock } from "./Styles/Block";
 import ControlPanel from "./ControlPanel/ControlPanel";
-import LeftPanel from "./LeftPanel/LeftPanel";
-import OverMenu from "./OverMenu";
 
 import { ShowMenu } from "../Actions/MenuActions";
 
 import "../root.css";
-import EMenu from "../Enumerations/EMenu";
 import IMenu from "../Interfaces/IMenu";
+import EMenu from "../Enumerations/EMenu";
+import IMenuInteractive from "../Interfaces/IMenuInteractive";
 
-interface IApp
-{
-	Menu: IMenu;
-	ShowMenu: (e: any) => void;
-}
-
-const App = ({ Menu, ShowMenu }: IApp) => {
+const App = ({ Menu, ShowMenu }: IMenuInteractive) => {
 	return (
-		<div onClick={(e: any) => { ShowMenu(e) } }>
-			<ControlPanel></ControlPanel>
+		<div onClick={(e: any) => {
+				if (!e.target.dataset.menu && !e.target.parentNode.dataset.menu)
+					ShowMenu({ Name: EMenu.NONE })
+			} }>
+			<ControlPanel ShowMenu={ShowMenu}></ControlPanel>
 			<FlexBlock>
 				<LeftPanel></LeftPanel>
 			</FlexBlock>
-			<OverMenu Menu={Menu}></OverMenu>
+			<OverMenu Menu={Menu} ShowMenu={ShowMenu}></OverMenu>
 		</div>
 	);
 }
@@ -35,9 +33,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-	ShowMenu: (e: any) => {
-		if (!e.target.dataset.menu && !e.target.parentNode.dataset.menu) dispatch(ShowMenu({ Name: EMenu.NONE }))
-	}
+	ShowMenu: (menu: IMenu) => dispatch(ShowMenu(menu))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

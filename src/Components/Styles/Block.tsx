@@ -70,7 +70,7 @@ export const ContextItemBlock = styled.div<IBorder>`
 
 export const DarkBackgroundBlock = styled.div`
     background-color: black;
-    opacity: 0.125;
+    opacity: 0.25;
     z-index: 5;
     position: absolute;
     left: 0;

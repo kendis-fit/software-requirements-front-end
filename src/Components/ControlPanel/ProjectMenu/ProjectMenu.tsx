@@ -1,12 +1,19 @@
 import React from "react";
 
-import { ContextBlock, ContextItemBlock } from "../../Styles/Block";
+import IMenu from "../../../Interfaces/IMenu";
 import IPosition from "../../../Interfaces/IPosition";
+import { ContextBlock, ContextItemBlock } from "../../Styles/Block";
+import EMenu from "../../../Enumerations/EMenu";
 
-const ProjectMenu = ({ X, Y }: IPosition) => {
+interface IProjectMenu extends IPosition
+{
+    ShowMenu: (menu: IMenu) => void;
+}
+
+const ProjectMenu = ({ ShowMenu, X, Y }: IProjectMenu) => {
     return(
         <ContextBlock X={X} Y={Y} Width="220px">
-            <ContextItemBlock IsBoardBottom={true}>Create project</ContextItemBlock>
+            <ContextItemBlock data-menu={true} IsBoardBottom={true} onClick={() => ShowMenu({ Name: EMenu.CREATE_PROJECT })}>Create project</ContextItemBlock>
             <ContextItemBlock>Open project from file</ContextItemBlock>
             <ContextItemBlock IsBoardBottom={true}>Open project from list</ContextItemBlock>
             <ContextItemBlock IsBoardBottom={true}>Save project</ContextItemBlock>
