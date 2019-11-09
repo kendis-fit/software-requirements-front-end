@@ -9,6 +9,7 @@ const ProjectMenu = ({ X, Y }: IPosition) => {
             <ContextItemBlock IsBoardBottom={true}>Create project</ContextItemBlock>
             <ContextItemBlock>Open project from file</ContextItemBlock>
             <ContextItemBlock IsBoardBottom={true}>Open project from list</ContextItemBlock>
+            <ContextItemBlock IsBoardBottom={true}>Save project</ContextItemBlock>
             <ContextItemBlock IsBoardBottom={true}>Remove project</ContextItemBlock>
             <ContextItemBlock>Rename project</ContextItemBlock>
         </ContextBlock>

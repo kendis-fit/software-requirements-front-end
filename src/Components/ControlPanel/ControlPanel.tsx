@@ -2,57 +2,53 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { TextUnderline } from "../Styles/Text";
-import { ControlBlock, ControlItemBlock } from "../Styles/Block";
-import ProjectMenu from "./ProjectMenu/ProjectMenu";
 import { ShowMenu } from "../../Actions/MenuActions";
+import { ControlBlock, ControlItemBlock } from "../Styles/Block";
 
 import EMenu from "../../Enumerations/EMenu";
+import IMenu from "../../Interfaces/IMenu";
 
 interface IControlPanel
 {
-    Menu: EMenu;
-    ShowMenu: (name: EMenu) => void;
+    ShowMenu: (name: IMenu) => void;
 }
 
-const ControlPanel = ({ Menu, ShowMenu }: IControlPanel) => {
-
-    const buttonProject = React.useRef<HTMLButtonElement>(null);
-    
+const ControlPanel = ({ ShowMenu }: IControlPanel) => {
     return(
-        <>
-            <ControlBlock Height="25px" Type="secondary">
-                <ControlItemBlock data-menu={true} ref={buttonProject} onClick={(): void => ShowMenu(EMenu.PROJECT)}>
-                    <TextUnderline>P</TextUnderline>
-                    <span>roject</span>
-                </ControlItemBlock>
-                <ControlItemBlock data-menu={true}>
-                    <TextUnderline>S</TextUnderline>
-                    <span>ettings</span>
-                </ControlItemBlock>
-                <ControlItemBlock data-menu={true}>
-                    <TextUnderline>A</TextUnderline>
-                    <span>bout</span>
-                </ControlItemBlock>
-            </ControlBlock>
-            {
-                Menu === EMenu.PROJECT &&
-                <ProjectMenu 
-                    X={buttonProject.current!.getBoundingClientRect().left.toString() + "px"}
-                    Y={buttonProject.current!.getBoundingClientRect().bottom.toString() + "px"}
-                ></ProjectMenu>
-            }
-        </>
+        <ControlBlock Height="25px" Type="secondary">
+            <ControlItemBlock data-menu={true} onClick={(e: any): void => ShowMenu(
+                    { 
+                        Name: EMenu.PROJECT, 
+                        X: e.target.getBoundingClientRect().left,
+                        Y: e.target.getBoundingClientRect().bottom
+                    })}>
+                <TextUnderline>P</TextUnderline>
+                <span>roject</span>
+            </ControlItemBlock>
+            <ControlItemBlock data-menu={true} onClick={(e: any): void => ShowMenu(
+                    { 
+                        Name: EMenu.SETTINGS, 
+                        X: e.target.getBoundingClientRect().left,
+                        Y: e.target.getBoundingClientRect().bottom
+                    })}>
+                <TextUnderline>S</TextUnderline>
+                <span>ettings</span>
+            </ControlItemBlock>
+            <ControlItemBlock data-menu={true} onClick={(e: any): void => ShowMenu(
+                    { 
+                        Name: EMenu.ABOUT, 
+                        X: e.target.getBoundingClientRect().left,
+                        Y: e.target.getBoundingClientRect().bottom
+                    })}>
+                <TextUnderline>A</TextUnderline>
+                <span>bout</span>
+            </ControlItemBlock>
+        </ControlBlock>
     );
 }
 
-const mapStateToProps = (state: any) => ({
-    Menu: state.Menu
-});
-
 const mapDispatchToProps = (dispatch: any) => ({
-    ShowMenu: (name: EMenu) => {
-        dispatch(ShowMenu(name))
-    }
+    ShowMenu: (menu: IMenu) => dispatch(ShowMenu(menu))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);
+export default connect(null, mapDispatchToProps)(ControlPanel);

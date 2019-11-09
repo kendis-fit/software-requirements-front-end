@@ -1,14 +1,17 @@
+import IMenu from "../Interfaces/IMenu";
 import EMenu from "../Enumerations/EMenu";
 import { SHOW_MENU } from "../Constants/Actions";
 
 type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V
 
-const initialState: EMenu = EMenu.NONE;
+const initialState: IMenu = {
+    Name: EMenu.NONE
+};
 
 type ActionType = 
-    | Action<'SHOW_MENU', { value: EMenu }>
+    | Action<'SHOW_MENU', { value: IMenu }>
 
-const Menu = (state: EMenu = initialState, action: ActionType) => {
+const Menu = (state: IMenu = initialState, action: ActionType) => {
 
     switch (action.type)
     {

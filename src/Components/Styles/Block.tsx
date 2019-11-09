@@ -59,11 +59,23 @@ export const ContextBlock = styled.div<IContextBlock>`
 
 export const ContextItemBlock = styled.div<IBorder>`
     padding: 5px;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
     ${props => props.IsBoardBottom && `border-bottom: 1px solid ${Colors.Gray}`};
 
     :hover {
         background-color: ${Colors.Gray};
     }
+`;
+
+export const DarkBackgroundBlock = styled.div`
+    background-color: black;
+    opacity: 0.125;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
 `;
