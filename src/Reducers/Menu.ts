@@ -12,8 +12,6 @@ type ActionType =
     | Action<'SHOW_MENU', { value: IMenu }>
 
 const Menu = (state: IMenu = initialState, action: ActionType) => {
-    if (action.value)
-    console.log(action.value.Name.toString());
     switch (action.type)
     {
         case SHOW_MENU:

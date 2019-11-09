@@ -4,14 +4,9 @@ import { TextUnderline } from "../Styles/Text";
 import { ControlBlock, ControlItemBlock } from "../Styles/Block";
 
 import EMenu from "../../Enumerations/EMenu";
-import IMenu from "../../Interfaces/IMenu";
+import IDisplayMenu from "../../Interfaces/IDisplayMenu";
 
-interface IControlPanel
-{
-    ShowMenu: (menu: IMenu) => void;
-}
-
-const ControlPanel = ({ ShowMenu }: IControlPanel) => {
+const ControlPanel = ({ ShowMenu }: IDisplayMenu) => {
     return(
         <ControlBlock Height="25px" Type="secondary">
             <ControlItemBlock data-menu={true} onClick={(e: any): void => ShowMenu(

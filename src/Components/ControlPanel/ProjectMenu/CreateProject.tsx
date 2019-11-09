@@ -1,18 +1,15 @@
 import React from "react";
 
-import { DarkBackgroundBlock } from "../../Styles/Block";
-import IMenu from "../../../Interfaces/IMenu";
+import { DarkBackgroundBlock, SmallBlockByCenter } from "../../Styles/Block";
+
 import EMenu from "../../../Enumerations/EMenu";
+import IDisplayMenu from "../../../Interfaces/IDisplayMenu";
 
-interface ICreateProject
-{
-    ShowMenu: (menu: IMenu) => void;
-}
-
-const CreateProject = ({ ShowMenu }: ICreateProject) => {
+const CreateProject = ({ ShowMenu }: IDisplayMenu) => {
     return(
         <>
             <DarkBackgroundBlock onClick={() => ShowMenu({ Name: EMenu.NONE })}></DarkBackgroundBlock>
+            <SmallBlockByCenter data-menu={true}></SmallBlockByCenter>
         </>
     );
 }

@@ -79,3 +79,14 @@ export const DarkBackgroundBlock = styled.div`
     width: 100%;
     cursor: pointer;
 `;
+
+export const SmallBlockByCenter = styled.div`
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    height: 200px;
+    width: 200px;
+    z-index: 5;
+`;

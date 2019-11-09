@@ -1,14 +1,11 @@
 import React from "react";
 
-import IMenu from "../../../Interfaces/IMenu";
 import IPosition from "../../../Interfaces/IPosition";
 import { ContextBlock, ContextItemBlock } from "../../Styles/Block";
 import EMenu from "../../../Enumerations/EMenu";
+import IDisplayMenu from "../../../Interfaces/IDisplayMenu";
 
-interface IProjectMenu extends IPosition
-{
-    ShowMenu: (menu: IMenu) => void;
-}
+interface IProjectMenu extends IPosition, IDisplayMenu {}
 
 const ProjectMenu = ({ ShowMenu, X, Y }: IProjectMenu) => {
     return(
