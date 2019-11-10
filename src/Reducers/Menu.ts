@@ -1,5 +1,5 @@
 import IMenu from "../Interfaces/IMenu";
-import EMenu from "../Enumerations/EMenu";
+import EMenu from "../Constants/Enumerations/EMenu";
 import { SHOW_MENU } from "../Constants/Actions";
 
 type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V

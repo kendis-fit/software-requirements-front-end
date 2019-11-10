@@ -1,6 +1,6 @@
 import React from "react";
 
-import EMenu from "../Enumerations/EMenu";
+import EMenu from "../Constants/Enumerations/EMenu";
 import IMenuInteractive from "../Interfaces/IMenuInteractive";
 
 import ProjectMenu from "../Components/ControlPanel/ProjectMenu/ProjectMenu";

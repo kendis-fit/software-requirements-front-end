@@ -2,17 +2,18 @@ import React from "react";
 
 import { Image } from "../Styles/Image";
 import { Wrapper } from "../Styles/Wrapper";
-import { SearchInput } from "../Styles/Input";
+import { Input } from "../Styles/Input";
 import { ControlBlock } from "../Styles/Block";
 import searchImage from "../../Images/search.png";
+import ETypeColor from "../../Constants/Enumerations/ETypeColor";
 
 const SearchPanel = () => {
     return(
-        <ControlBlock Height="55px" Type="primary">
+        <ControlBlock Height="55px" Type={ETypeColor.PRIMARY}>
             <Wrapper Top="10px" Left="30px">
-                <ControlBlock Type="white" Height="35px" Width="210px" Rounde="2px">
+                <ControlBlock Type={ETypeColor.WHITE} Height="35px" Width="210px" Rounde="3px">
                     <Wrapper Top="2px">
-                        <SearchInput placeholder="Enter a requirement" />
+                        <Input placeholder="Enter a requirement" />
                     </Wrapper>
                 </ControlBlock>
             </Wrapper>

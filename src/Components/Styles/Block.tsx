@@ -5,6 +5,7 @@ import IPosition from "../../Interfaces/IPosition";
 import ISize from "../../Interfaces/StyledComponents/ISize";
 import IBorder from "../../Interfaces/StyledComponents/IBorder";
 import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
+import ETypeColor from "../../Constants/Enumerations/ETypeColor";
 
 interface IControlBlock extends ISize, ITypeColor {}
 interface IContextBlock extends ISize, IPosition {}
@@ -20,17 +21,17 @@ export const ControlBlock = styled.nav<IControlBlock>`
 
         switch (props.Type)
         {
-            case "primary":
+            case ETypeColor.PRIMARY:
                 return props.OutLine ? `border: 1px solid ${Colors.Blue}` : `background-color: ${Colors.Blue}`;
-            case "secondary":
+            case ETypeColor.SECONDARY:
                 return props.OutLine ? `border: 1px solid ${Colors.LightGray}` : `background-color: ${Colors.LightGray}`;
             default:
                 return "background-color: white";
         }
     }}
     ${props => props.Rounde ? `border-radius: ${props.Rounde}` : ""};
-    ${props => props.Height ? `height: ${props.Height}` : `height: 25px`}
-    ${props => props.Width ? `width:  ${props.Width}` : `width: 100%`}
+    ${props => props.Height ? `height: ${props.Height}` : `height: 25px`};
+    ${props => props.Width ? `width:  ${props.Width}` : `width: 100%`};
 `;
 
 export const ControlItemBlock = styled.button`
@@ -78,15 +79,4 @@ export const DarkBackgroundBlock = styled.div`
     height: 100%;
     width: 100%;
     cursor: pointer;
-`;
-
-export const SmallBlockByCenter = styled.div`
-    position: absolute;
-    background-color: white;
-    left: 50%;
-    top: 50%;
-    margin-left: -50px;
-    height: 200px;
-    width: 200px;
-    z-index: 5;
 `;

@@ -1,5 +1,7 @@
+import ETypeColor from "../../Constants/Enumerations/ETypeColor";
+
 export default interface ITypeColor
 {
-    Type: string;
+    Type: ETypeColor;
     OutLine?: boolean;
 }

@@ -10,13 +10,13 @@ import { ShowMenu } from "../Actions/MenuActions";
 
 import "../root.css";
 import IMenu from "../Interfaces/IMenu";
-import EMenu from "../Enumerations/EMenu";
+import EMenu from "../Constants/Enumerations/EMenu";
 import IMenuInteractive from "../Interfaces/IMenuInteractive";
 
 const App = ({ Menu, ShowMenu }: IMenuInteractive) => {
 	return (
 		<div onClick={(e: any) => {
-				if (!e.target.dataset.menu && !e.target.parentNode.dataset.menu)
+				if (!e.target.dataset.close)
 					ShowMenu({ Name: EMenu.NONE })
 			} }>
 			<ControlPanel ShowMenu={ShowMenu}></ControlPanel>
