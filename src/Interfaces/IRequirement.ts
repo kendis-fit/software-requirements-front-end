@@ -1,6 +1,6 @@
 export default interface IRequirement
 {
-    Id: Number;
+    Id: number;
     Name: string;
     Requirements: Array<IRequirement>;
 }
