@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import RequirementItem from "./RequirementItem";
 
 import IRequirement from "../../../Interfaces/IRequirement";
+import { Text } from "../../Styles/Text";
+import { Wrapper } from "../../Styles/Wrapper";
 
 interface IRequirementList
 {
@@ -25,7 +27,11 @@ const RequirementList = ({ Requirements, ParentId, Level = 1 }: IRequirementList
                         <RequirementList Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1}></RequirementList>
                     }
                     </>
-                ) : <span>No data</span>
+                ) 
+                :
+                <Wrapper Top="200px" style={{ textAlign: "center" }}>
+                    <Text Size="72px">Empty</Text>
+                </Wrapper>
             }
         </>
     );

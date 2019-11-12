@@ -5,6 +5,7 @@ import OverMenu from "./OverMenu";
 import LeftPanel from "./LeftPanel/LeftPanel";
 import { FlexBlock } from "./Styles/Block";
 import ControlPanel from "./ControlPanel/ControlPanel";
+import RightPanel from "./RightPanel/RightPanel";
 
 import { ShowMenu } from "../Actions/MenuActions";
 
@@ -22,6 +23,7 @@ const App = ({ Menu, ShowMenu }: IMenuInteractive) => {
 			<ControlPanel ShowMenu={ShowMenu}></ControlPanel>
 			<FlexBlock>
 				<LeftPanel></LeftPanel>
+				<RightPanel></RightPanel>
 			</FlexBlock>
 			<OverMenu Menu={Menu} ShowMenu={ShowMenu}></OverMenu>
 		</div>
