@@ -1,7 +1,7 @@
-export default interface IRequirementView
+import IRequirementLevel from "./IRequirementLevel";
+
+export default interface IRequirementView extends IRequirementLevel
 {
     Id: number;
     Name: string;
-    ParentId?: number;
-    Level: number;
 }

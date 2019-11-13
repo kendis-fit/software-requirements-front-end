@@ -1,8 +1,8 @@
+import Action from "../Constants/Types/ActionReducer";
 import IRequirement from "../Interfaces/IRequirement";
 import IFullRequirement from "../Interfaces/IFullRequirement";
-import { ADD_REQUIREMENT, REMOVE_REQUIREMENT } from "../Constants/Actions";
 
-type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V
+import { ADD_REQUIREMENT, REMOVE_REQUIREMENT } from "../Constants/Actions";
 
 const initialState: Array<IRequirement> = new Array<IRequirement>();
 

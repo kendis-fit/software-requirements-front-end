@@ -1,7 +1,7 @@
 import IProfile from "../Interfaces/IProfile";
-import { SET_PROFILE } from "../Constants/Actions";
+import Action from "../Constants/Types/ActionReducer";
 
-type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V
+import { SET_PROFILE } from "../Constants/Actions";
 
 const initialState: Array<IProfile> = new Array<IProfile>();
 

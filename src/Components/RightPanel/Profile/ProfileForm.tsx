@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import IProfile from "../../../Interfaces/IProfile"
-import { Text } from "../../Styles/Text";
+import { Text, TextUnderline } from "../../Styles/Text";
 
 interface IProfileForm
 {
@@ -18,20 +18,38 @@ const ProfileForm = ({ Metrics }: IProfileForm) => {
             </div>
         );
     return(
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "calc(100vh - 30px)" }}>
             {
                 Metrics.map(p => 
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                        <span>{p.NameIndex} </span>
-                        <span>{p.Name}: </span>
+                    <div style={{ display: "flex", flexDirection: "row", margin: "20px" }}>
+                        <span style={{ marginRight: "5px" }}>{p.NameIndex}</span>
+                        <TextUnderline>{p.Name}: </TextUnderline>
                         {
                             p.Coefficients.length > 0 &&
-                            p.Coefficients.map(c => 
-                                <div>
-                                    <span>{c.Name}</span>
-                                    <input value={c.Value} />       
-                                </div>
-                            )
+                            p.Coefficients.map(c => {
+
+                                return(
+                                    <>
+                                        <span style={{ marginLeft: "10px", marginRight: "5px" }}>{c.Name}</span>
+                                        {
+                                            c.NameMetric &&
+                                            <span>{c.NameMetric}</span>
+                                        }
+                                        <input value={c.Value} style={{ width: "100px" }} />
+                                        {
+                                            c.Primitives && <span>Primitives</span>
+                                        }
+                                        {
+                                            c.Primitives && c.Primitives.map((p: any) =>
+                                                <>
+                                                    <span>{p.Name}</span>
+                                                    <input value={c.Value} style={{ width: "100px" }} />
+                                                </>
+                                            )
+                                        }     
+                                    </>
+                                );
+                            })
                         }
                     </div>
                 )

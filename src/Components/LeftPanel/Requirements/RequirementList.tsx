@@ -1,44 +1,41 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import RequirementItem from "./RequirementItem";
-
-import IRequirement from "../../../Interfaces/IRequirement";
 import { Text } from "../../Styles/Text";
 import { Wrapper } from "../../Styles/Wrapper";
+import RequirementItemContainer from "../../../Containers/RequirementItemContainer";
 
-interface IRequirementList
+import IRequirement from "../../../Interfaces/IRequirement";
+import IRequirementLevel from "../../../Interfaces/IRequirementLevel";
+
+interface IRequirementList extends IRequirementLevel
 {
-    ParentId?: number;
     Requirements: Array<IRequirement>;
-    Level?: number;
 }
 
-const RequirementList = ({ Requirements, ParentId, Level = 1 }: IRequirementList) => {
+const RequirementList = ({ Requirements, ParentId, Level }: IRequirementList) => {
+
+    if (Requirements.length === 0 && !ParentId)
+        return (
+            <Wrapper Top="200px" style={{ textAlign: "center" }}>
+                <Text Size="72px">Empty</Text>
+            </Wrapper>
+        );
+
     return(
         <>
             {
-                Requirements && Requirements.length > 0 ? 
                 Requirements.map((r, i) =>
                     <>
-                    <RequirementItem key={i} Id={r.Id} ParentId={ParentId} Name={r.Name} Level={ParentId ? Level : Level + 1}></RequirementItem>
+                    <RequirementItemContainer key={i} Id={r.Id} ParentId={ParentId} Name={r.Name} Level={ParentId ? Level : Level + 1} />
                     {
                         r.Requirements && r.Requirements.length > 0 &&
-                        <RequirementList Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1}></RequirementList>
+                        <RequirementList Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1} />
                     }
                     </>
-                ) 
-                :
-                <Wrapper Top="200px" style={{ textAlign: "center" }}>
-                    <Text Size="72px">Empty</Text>
-                </Wrapper>
+                )
             }
         </>
     );
 }
 
-const mapStateToProps = (state: any) => ({
-    Requirements: state.Requirements    
-});
-
-export default connect(mapStateToProps)(RequirementList);
+export default RequirementList;

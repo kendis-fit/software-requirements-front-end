@@ -1,8 +1,8 @@
 import IMenu from "../Interfaces/IMenu";
 import EMenu from "../Constants/Enumerations/EMenu";
-import { SHOW_MENU } from "../Constants/Actions";
+import Action from "../Constants/Types/ActionReducer";
 
-type Action<K, V = void> = V extends void ? { type: K } : { type: K } & V
+import { SHOW_MENU } from "../Constants/Actions";
 
 const initialState: IMenu = {
     Name: EMenu.NONE

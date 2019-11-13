@@ -4,7 +4,7 @@ import ProfileForm from "./Profile/ProfileForm";
 
 const RightPanel = () => {
     return(
-        <div style={{ width: "100%" }}>
+        <div>
             <ProfileForm></ProfileForm>
         </div>
     );

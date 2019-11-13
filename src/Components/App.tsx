@@ -1,18 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import OverMenu from "./OverMenu";
-import LeftPanel from "./LeftPanel/LeftPanel";
+import PopUpMenu from "./PopUpMenu";
 import { FlexBlock } from "./Styles/Block";
-import ControlPanel from "./ControlPanel/ControlPanel";
+import LeftPanel from "./LeftPanel/LeftPanel";
 import RightPanel from "./RightPanel/RightPanel";
+import ControlPanel from "./ControlPanel/ControlPanel";
 
-import { ShowMenu } from "../Actions/MenuActions";
-
-import "../root.css";
 import IMenu from "../Interfaces/IMenu";
 import EMenu from "../Constants/Enumerations/EMenu";
 import IMenuInteractive from "../Interfaces/IMenuInteractive";
+
+import "../root.css";
+
+import { ShowMenu } from "../Actions/MenuActions";
 
 const App = ({ Menu, ShowMenu }: IMenuInteractive) => {
 	return (
@@ -25,7 +26,7 @@ const App = ({ Menu, ShowMenu }: IMenuInteractive) => {
 				<LeftPanel></LeftPanel>
 				<RightPanel></RightPanel>
 			</FlexBlock>
-			<OverMenu Menu={Menu} ShowMenu={ShowMenu}></OverMenu>
+			<PopUpMenu Menu={Menu} ShowMenu={ShowMenu} />
 		</div>
 	);
 }

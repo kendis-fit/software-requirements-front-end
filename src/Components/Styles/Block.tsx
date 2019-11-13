@@ -4,21 +4,38 @@ import Colors from "../../Constants/Colors";
 import IPosition from "../../Interfaces/IPosition";
 import ISize from "../../Interfaces/StyledComponents/ISize";
 import IBorder from "../../Interfaces/StyledComponents/IBorder";
-import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
 import ETypeColor from "../../Constants/Enumerations/ETypeColor";
+import EDirection from "../../Constants/Enumerations/EDirection";
+import IDirection from "../../Interfaces/StyledComponents/IDirection";
+import ITypeColor from "../../Interfaces/StyledComponents/ITypeColor";
 
-interface IControlBlock extends ISize, ITypeColor {}
+interface IBlock extends ISize, ITypeColor {}
 interface IContextBlock extends ISize, IPosition {}
 
-export const FlexBlock = styled.div`
+export const FlexBlock = styled.div<IDirection>`
     display: flex;
+    ${props => {
+        switch (props.Direction)
+        {
+            case EDirection.ROW:
+                return "flex-direction: row";
+            case EDirection.COLUMN:
+                return "flex-direction: column";
+        
+        }
+    }};
 `;
 
-export const ControlBlock = styled.nav<IControlBlock>`
+export const ControlBlock = styled.nav`
     display: flex;
     line-height: 25px;
-    ${props => {
+    height: 25px;
+    width: 100%;
+    background-color: ${Colors.LightGray};
+`;
 
+export const Block = styled(FlexBlock)<IBlock>`
+    ${props => {
         switch (props.Type)
         {
             case ETypeColor.PRIMARY:
@@ -29,9 +46,9 @@ export const ControlBlock = styled.nav<IControlBlock>`
                 return "background-color: white";
         }
     }}
-    ${props => props.Rounde ? `border-radius: ${props.Rounde}` : ""};
-    ${props => props.Height ? `height: ${props.Height}` : `height: 25px`};
-    ${props => props.Width ? `width:  ${props.Width}` : `width: 100%`};
+    ${props => props.Rounde && `border-radius: ${props.Rounde}`};
+    ${props => props.Height && `height: ${props.Height}`};
+    ${props => props.Width && `width:  ${props.Width}`};
 `;
 
 export const ControlItemBlock = styled.button`

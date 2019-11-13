@@ -1,18 +1,20 @@
 import React from "react";
 
-import { ControlBlock } from "../Styles/Block";
+import { Block } from "../Styles/Block";
 import SearchPanel from "./SearchPanel";
+import RequirementListContainer from "../../Containers/RequirementListContainer";
+
 import ETypeColor from "../../Constants/Enumerations/ETypeColor";
-import RequirementList from "./Requirements/RequirementList";
+import EDirection from "../../Constants/Enumerations/EDirection";
 
 const LeftPanel = () => {
     return(
-        <ControlBlock style={{ flexDirection: "column" }} Type={ETypeColor.PRIMARY} OutLine={true} Height="calc(100vh - 25px)" Width="300px">
+        <Block Direction={EDirection.COLUMN} Type={ETypeColor.PRIMARY} OutLine={true} Height="calc(100vh - 25px)" Width="300px">
             <SearchPanel></SearchPanel>
             <ul>
-                <RequirementList></RequirementList>
+                <RequirementListContainer Level={1} />
             </ul>
-        </ControlBlock>
+        </Block>
     );
 }
 

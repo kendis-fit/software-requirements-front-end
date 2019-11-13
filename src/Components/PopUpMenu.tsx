@@ -3,10 +3,10 @@ import React from "react";
 import EMenu from "../Constants/Enumerations/EMenu";
 import IMenuInteractive from "../Interfaces/IMenuInteractive";
 
-import ProjectMenu from "../Components/ControlPanel/ProjectMenu/ProjectMenu";
-import CreateProject from "../Components/ControlPanel/ProjectMenu/CreateProject";
+import ProjectMenu from "./ControlPanel/ProjectMenu/ProjectMenu";
+import CreateProject from "./ControlPanel/ProjectMenu/CreateProject";
 
-const OverMenu = ({ Menu, ShowMenu }: IMenuInteractive) => {
+const PopUpMenu = ({ Menu, ShowMenu }: IMenuInteractive) => {
     switch (Menu.Name)
     {
         case EMenu.PROJECT:
@@ -18,4 +18,4 @@ const OverMenu = ({ Menu, ShowMenu }: IMenuInteractive) => {
     }
 }
 
-export default OverMenu;
+export default PopUpMenu;

@@ -1,10 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import IRequirementView from "../../../Interfaces/IRequirementView";
 import { TreeNode } from "../../Styles/List";
 
-import ProfileApi from "../../../Api/ProfileApi";
+import IRequirementView from "../../../Interfaces/IRequirementView";
 
 interface IRequirementItem extends IRequirementView
 {
@@ -19,8 +17,4 @@ const RequirementItem = ({ Id, ParentId, Name, Level, SetProfile }: IRequirement
     );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    SetProfile: (id: number) => dispatch(ProfileApi.GetProfile(id))
-});
-
-export default connect(null, mapDispatchToProps)(RequirementItem);
+export default RequirementItem;
