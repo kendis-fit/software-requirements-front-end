@@ -2,9 +2,9 @@ import React from "react";
 
 import { TreeNode } from "../../Styles/List";
 
-import IRequirementView from "../../../Interfaces/IRequirementView";
 import EMenu from "../../../Constants/Enumerations/EMenu";
 import IMenu from "../../../Interfaces/IMenu";
+import IRequirementView from "../../../Interfaces/IRequirementView";
 
 interface IRequirementItem extends IRequirementView
 {
