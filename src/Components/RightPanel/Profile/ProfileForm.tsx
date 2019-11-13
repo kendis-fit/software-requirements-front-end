@@ -1,12 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import IProfile from "../../../Interfaces/IProfile"
+import { Button } from "../../Styles/Button";
 import { Text, TextUnderline } from "../../Styles/Text";
+
+import IMetric from "../../../Interfaces/Profile/IMetric";
+import ETypeColor from "../../../Constants/Enumerations/ETypeColor";
+import { FlexBlock } from "../../Styles/Block";
 
 interface IProfileForm
 {
-    Metrics: Array<IProfile>;
+    Metrics: Array<IMetric>;
 }
 
 const ProfileForm = ({ Metrics }: IProfileForm) => {
@@ -18,7 +21,8 @@ const ProfileForm = ({ Metrics }: IProfileForm) => {
             </div>
         );
     return(
-        <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "calc(100vh - 30px)" }}>
+        <>
+        <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "850px" }}>
             {
                 Metrics.map(p => 
                     <div style={{ display: "flex", flexDirection: "row", margin: "20px" }}>
@@ -30,23 +34,27 @@ const ProfileForm = ({ Metrics }: IProfileForm) => {
 
                                 return(
                                     <>
-                                        <span style={{ marginLeft: "10px", marginRight: "5px" }}>{c.Name}</span>
                                         {
-                                            c.NameMetric &&
-                                            <span>{c.NameMetric}</span>
+                                            c.NameMetric ?
+                                            <>
+                                                <span style={{ marginLeft: "10px", marginRight: "5px" }}>{c.NameMetric}</span>
+                                                <TextUnderline style={{ marginRight: "5px" }}>{c.Name}: </TextUnderline>
+                                            </>
+                                            :
+                                            <span style={{ marginLeft: "10px", marginRight: "5px" }}>{c.Name}</span>
                                         }
-                                        <input value={c.Value} style={{ width: "100px" }} />
+                                        <input readOnly={c.Primitives ? true : false} value={c.Value ? c.Value : undefined} style={{ width: "100px" }} />
                                         {
-                                            c.Primitives && <span>Primitives</span>
+                                            c.Primitives && <span style={{ marginLeft: "5px" }}>Primitives</span>
                                         }
                                         {
                                             c.Primitives && c.Primitives.map((p: any) =>
                                                 <>
-                                                    <span>{p.Name}</span>
-                                                    <input value={c.Value} style={{ width: "100px" }} />
+                                                    <span style={{ marginLeft: "10px", marginRight: "5px" }}>{p.Name}</span>
+                                                    <input value={c.Value ? c.Value : undefined} style={{ width: "100px" }} />
                                                 </>
                                             )
-                                        }     
+                                        }
                                     </>
                                 );
                             })
@@ -55,11 +63,12 @@ const ProfileForm = ({ Metrics }: IProfileForm) => {
                 )
             }
         </div>
+            <FlexBlock style={{ justifyContent: "end" }}>
+                <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.SECONDARY} TypeButton="button" Rounde="3px">Visualisation</Button>
+                <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="button" Rounde="3px">Save</Button>
+            </FlexBlock>
+        </>
     );
 }
 
-const mapStateToProps = (state: any) => ({
-    Metrics: state.Profile
-});
-
-export default connect(mapStateToProps)(ProfileForm);
+export default ProfileForm;

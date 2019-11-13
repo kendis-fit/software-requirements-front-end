@@ -1,11 +1,11 @@
 import React from "react";
 
-import ProfileForm from "./Profile/ProfileForm";
+import ProfileFormContainer from "../../Containers/ProfileFormContainer";
 
 const RightPanel = () => {
     return(
         <div>
-            <ProfileForm></ProfileForm>
+            <ProfileFormContainer></ProfileFormContainer>
         </div>
     );
 }

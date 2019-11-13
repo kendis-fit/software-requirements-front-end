@@ -17,6 +17,7 @@ export const Button = styled.button.attrs<IButton>(props => ({ disabled: props.R
     height: 40px;
     width: 90px;
     color: white;
+    white-space: nowrap;
     ${props => {
         switch (props.Type)
         {

@@ -13,7 +13,7 @@ const ProjectMenu = ({ ShowMenu, X, Y }: IProjectMenu) => {
         <ContextBlock X={X} Y={Y} Width="220px">
             <ContextItemBlock data-close={false} IsBoardBottom={true} onClick={() => ShowMenu({ Name: EMenu.CREATE_PROJECT })}>Create project</ContextItemBlock>
             <ContextItemBlock>Open project from file</ContextItemBlock>
-            <ContextItemBlock IsBoardBottom={true}>Open project from list</ContextItemBlock>
+            <ContextItemBlock>Open project from list</ContextItemBlock>
         </ContextBlock>
     );
 }

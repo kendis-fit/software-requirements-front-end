@@ -34,16 +34,15 @@ const CreateProject = ({ CreateProject, ShowMenu }: ICreateProject) => {
                         onClick={(): void => CreateProject(nameProject)}>Create</Button>
                 </ModalHeader>
                 <ModalBody data-close={false}>
-                    <Wrapper data-close={false} Left="15px" Right="15px" Top="10px" Bottom="5px">
-                        <label data-close={false}>Name project</label>
-                    </Wrapper>
-                    <Wrapper data-close={false} Left="15px" Right="15px">
-                        <Block data-close={false} Type={ETypeColor.WHITE} Rounde="3px" Height="30px" Width="100%">
-                            <Wrapper Top="2px">
-                                <Input data-close={false} required onChange={e => setNameProject(e.target.value)} type="text" />
-                            </Wrapper>
-                        </Block>
-                    </Wrapper>
+                    <label data-close={false} style={{ padding: "10px" }}>Name project</label>
+                    <div style={{ padding: "0 10px 0 10px" }}>
+
+                    <Block data-close={false} Type={ETypeColor.WHITE} Rounde="3px" Height="30px" Width="100%">
+                        <Wrapper Top="2px">
+                            <Input data-close={false} required onChange={e => setNameProject(e.target.value)} type="text" />
+                        </Wrapper>
+                    </Block>
+                    </div>
                 </ModalBody>
             </Modal>
         </Form>
