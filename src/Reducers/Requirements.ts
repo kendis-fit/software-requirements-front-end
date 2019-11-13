@@ -15,6 +15,7 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
     {
         case ADD_REQUIREMENT:
             const value = action.value as IFullRequirement;
+            
             if (value.ParentId === null) // value is project and isn't requirement
             {
                 state.push(value.Requirement);
@@ -23,7 +24,6 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
             {
                 addRequirement(state, value.ParentId, value.Requirement);
             }
-            console.log(state);
             return [ ...state ];
         case REMOVE_REQUIREMENT:
             const id = action.value as Number;
@@ -34,10 +34,10 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
     }
 }
 
-function addRequirement(requirements: Array<IRequirement>, parentId: Number, requirement: IRequirement) {
+function addRequirement(requirements: Array<IRequirement>, parentId: number, requirement: IRequirement) {
 
     for (let node of requirements) {
-        if (node.Id === parentId) {
+        if (node.Id == parentId) { // parentId like string, but WHY????
             node.Requirements.push(requirement);
         } else if (node.Requirements.length > 0) {
             addRequirement(node.Requirements, parentId, requirement);

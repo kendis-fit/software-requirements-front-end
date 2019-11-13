@@ -4,7 +4,7 @@ import IRequirement from "../Interfaces/IRequirement";
 
 export default class ProjectApi
 {
-    public static CreateProject(name: string, parentId: number | null = null): any
+    public static CreateProject(name: string): any
     {
         return (dispatch: any) => {
             fetch("https://localhost:5001/Projects", {
@@ -15,11 +15,11 @@ export default class ProjectApi
                 body: JSON.stringify({ name: name })
             })
             .then(r => r.text())
-            .then(r => dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name, parentId))));
+            .then(r => dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name))));
         }
     }
 
-    private static createRequirement(id: number, name: string, parentId: number | null): IFullRequirement
+    private static createRequirement(id: number, name: string): IFullRequirement
     {
         
         const newRequirement: IRequirement = {
@@ -29,7 +29,7 @@ export default class ProjectApi
         }
         
         return {
-            ParentId: parentId,
+            ParentId: null,
             Requirement: newRequirement
         };
     }

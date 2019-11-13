@@ -11,13 +11,13 @@ import ETypeColor from "../Constants/Enumerations/ETypeColor";
 
 interface ICreateRequirement
 {
-    CreateProject: (name: string, parentId?: number) => void;
+    CreateRequirement: (name: string, parentId?: number) => void;
     ParentId?: number;
 }
 
-const CreateRequirement = ({ CreateProject, ParentId }: ICreateRequirement) => {
+const CreateRequirement = ({ CreateRequirement, ParentId }: ICreateRequirement) => {
 
-    const [nameProject, setNameProject] = useState("");
+    const [nameRequirement, setNameRequirement] = useState("");
 
     return(
         <Form> 
@@ -26,8 +26,8 @@ const CreateRequirement = ({ CreateProject, ParentId }: ICreateRequirement) => {
                 <ModalHeader data-close={false} Height="50px">
                     <Button Type={ETypeColor.SECONDARY} Rounde="3px" ReadOnly={false} TypeButton="button">Close</Button>
                     <strong data-close={false}>New project</strong>
-                    <Button Type={ETypeColor.PRIMARY} Rounde="3px" ReadOnly={nameProject.length > 0 ? false : true} TypeButton="button"
-                        onClick={(): void => CreateProject(nameProject, ParentId)}>Create</Button>
+                    <Button Type={ETypeColor.PRIMARY} Rounde="3px" ReadOnly={nameRequirement.length > 0 ? false : true} TypeButton="button"
+                        onClick={(): void => CreateRequirement(nameRequirement, ParentId)}>Create</Button>
                 </ModalHeader>
                 <ModalBody data-close={false}>
                     <label data-close={false} style={{ padding: "10px" }}>Name {ParentId ? "requirement" : "project"}</label>
@@ -35,7 +35,7 @@ const CreateRequirement = ({ CreateProject, ParentId }: ICreateRequirement) => {
 
                     <Block data-close={false} Type={ETypeColor.WHITE} Rounde="3px" Height="30px" Width="100%">
                         <Wrapper Top="2px">
-                            <Input data-close={false} required onChange={e => setNameProject(e.target.value)} type="text" />
+                            <Input data-close={false} required onChange={e => setNameRequirement(e.target.value)} type="text" />
                         </Wrapper>
                     </Block>
                     </div>

@@ -2,11 +2,16 @@ import { connect } from "react-redux";
 
 import CreateRequirement from "../Components/CreateRequirement";
 
-
 import ProjectApi from "../Api/ProjectApi";
+import RequirementApi from "../Api/RequirementApi";
 
-const mapDispatchToProps = (dispatch: any) => ({
-    CreateProject: (name: string, parentId?: number) => dispatch(ProjectApi.CreateProject(name, parentId))
+const mapStateToProps = (state: any) => ({
+    ParentId: state.Requirement
 });
 
-export default connect(null, mapDispatchToProps)(CreateRequirement);
+const mapDispatchToProps = (dispatch: any) => ({
+    CreateRequirement: (name: string, parentId?: number) => parentId ? // if parentId null, then it creates project, otherwise requirement
+        dispatch(RequirementApi.CreateRequirement(name, parentId)) : dispatch(ProjectApi.CreateProject(name))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRequirement);

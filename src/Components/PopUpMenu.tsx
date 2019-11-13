@@ -12,6 +12,7 @@ const PopUpMenu = ({ Menu, ShowMenu }: IMenuInteractive) => {
     {
         case EMenu.PROJECT:
             return <ProjectMenu ShowMenu={ShowMenu} X={Menu.X + "px"} Y={Menu.Y + "px"}></ProjectMenu>
+        case EMenu.ADD_REQUIREMENT:
         case EMenu.CREATE_PROJECT:
             return <CreateRequirementContainer></CreateRequirementContainer>
         case EMenu.REQUIREMENT_MENU:
