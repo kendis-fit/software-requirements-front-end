@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Text } from "../../Styles/Text";
-import { Wrapper } from "../../Styles/Wrapper";
+import RequirementsEmpty from "./RequirementsEmpty";
 import RequirementItemContainer from "../../../Containers/RequirementItemContainer";
 
 import IRequirement from "../../../Interfaces/IRequirement";
@@ -15,11 +14,7 @@ interface IRequirementList extends IRequirementLevel
 const RequirementList = ({ Requirements, ParentId, Level }: IRequirementList) => {
 
     if (Requirements.length === 0 && !ParentId)
-        return (
-            <Wrapper Top="200px" style={{ textAlign: "center" }}>
-                <Text Size="72px">Empty</Text>
-            </Wrapper>
-        );
+        return <RequirementsEmpty />
     return(
         <>
             {

@@ -25,7 +25,7 @@ const CreateRequirement = ({ CreateRequirement, ParentId }: ICreateRequirement) 
             <Modal data-close={false}>
                 <ModalHeader data-close={false} Height="50px">
                     <Button Type={ETypeColor.SECONDARY} Rounde="3px" ReadOnly={false} TypeButton="button">Close</Button>
-                    <strong data-close={false}>New project</strong>
+                    <strong data-close={false}>New {ParentId ? "requirement" : "project"}</strong>
                     <Button Type={ETypeColor.PRIMARY} Rounde="3px" ReadOnly={nameRequirement.length > 0 ? false : true} TypeButton="button"
                         onClick={(): void => CreateRequirement(nameRequirement, ParentId)}>Create</Button>
                 </ModalHeader>
@@ -35,7 +35,7 @@ const CreateRequirement = ({ CreateRequirement, ParentId }: ICreateRequirement) 
 
                     <Block data-close={false} Type={ETypeColor.WHITE} Rounde="3px" Height="30px" Width="100%">
                         <Wrapper Top="2px">
-                            <Input data-close={false} required onChange={e => setNameRequirement(e.target.value)} type="text" />
+                            <Input data-close={false} onChange={e => setNameRequirement(e.target.value)} type="text" />
                         </Wrapper>
                     </Block>
                     </div>

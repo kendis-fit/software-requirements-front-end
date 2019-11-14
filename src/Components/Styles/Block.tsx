@@ -97,3 +97,13 @@ export const DarkBackgroundBlock = styled.div`
     width: 100%;
     cursor: pointer;
 `;
+
+export const BlockCenter = styled.div`
+    margin-top: 200px;
+    text-align: center;
+    width: 100%;
+`;
+
+export const ButtonsBlock = styled(FlexBlock)`
+    justify-content: flex-end;
+`;

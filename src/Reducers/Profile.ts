@@ -1,4 +1,4 @@
-import IProfile from "../Interfaces/Profile/IMetric";
+import IProfile from "../Interfaces/Profile/IIndex";
 import Action from "../Constants/Types/ActionReducer";
 
 import { SET_PROFILE } from "../Constants/Actions";
