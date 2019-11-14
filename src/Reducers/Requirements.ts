@@ -37,7 +37,7 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
 function addRequirement(requirements: Array<IRequirement>, parentId: number, requirement: IRequirement) {
 
     for (let node of requirements) {
-        if (node.Id == parentId) { // parentId like string, but WHY????
+        if (node.Id === parentId) {
             node.Requirements.push(requirement);
         } else if (node.Requirements.length > 0) {
             addRequirement(node.Requirements, parentId, requirement);

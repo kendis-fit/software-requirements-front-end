@@ -1,7 +1,7 @@
 import IRequirement from "../Interfaces/IRequirement";
 import IFullRequirement from "../Interfaces/IFullRequirement";
 
-import { AddRequirement } from "../Actions/RequirementsActions";
+import { AddRequirement, RemoveRequirement } from "../Actions/RequirementsActions";
 
 export default class RequirementApi
 {
@@ -17,6 +17,20 @@ export default class RequirementApi
             })
             .then(r => r.text())
             .then(r => dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name, parentId))));
+        }
+    }
+
+    public static RemoveRequirement(id: number): any
+    {
+        return (dispatch: any) => {
+            fetch(`https://localhost:5001/Requirements/${id}`, {
+            method: "DELETE"
+            })
+            .then(r => {
+                if (r.status === 200) {
+                    dispatch(RemoveRequirement(id));
+                }
+            })
         }
     }
 

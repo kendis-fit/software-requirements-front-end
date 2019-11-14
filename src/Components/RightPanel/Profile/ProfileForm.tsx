@@ -19,7 +19,7 @@ const ProfileForm = ({ Metrics }: IProfileForm) => {
             <div style={{ position: "absolute", top: "30%", left: "40%" }}>
                 <Text Size="172px">Empty</Text>
             </div>
-        );
+        );      
     return(
         <>
         <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "850px" }}>

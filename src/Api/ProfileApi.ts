@@ -10,4 +10,12 @@ export default class ProfileApi
             .then(r => dispatch(SetProfile(r)));
         }
     }
+
+    public static UpdateProfile(id: number, profile: string): any
+    {
+        fetch(`https://localhost:5001/Profiles/${id}`, {
+            method: "PUT",
+            body: profile
+        })
+    }
 }
