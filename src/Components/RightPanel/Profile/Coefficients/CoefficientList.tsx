@@ -6,14 +6,15 @@ import ICoefficient from "../../../../Interfaces/Profile/ICoefficient";
 
 interface ICoefficientList
 {
+    Id: number;
     Coefficients: Array<ICoefficient>;
 }
 
-const CoefficientList = ({ Coefficients }: ICoefficientList) => {
+const CoefficientList = ({ Id, Coefficients }: ICoefficientList) => {
     return(
         <>
             {
-                Coefficients.map(c => <CoefficientItem Name={c.Name} NameMetric={c.NameMetric} Primitives={c.Primitives} Value={c.Value} />)
+                Coefficients.map((c, i) => <CoefficientItem IndexId={Id} Id={i} key={i} Name={c.Name} NameMetric={c.NameMetric} Primitives={c.Primitives} Value={c.Value} />)
             }        
         </>
     );

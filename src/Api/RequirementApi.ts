@@ -24,7 +24,7 @@ export default class RequirementApi
     {
         return (dispatch: any) => {
             fetch(`https://localhost:5001/Requirements/${id}`, {
-            method: "DELETE"
+                method: "DELETE"
             })
             .then(r => {
                 if (r.status === 200) {

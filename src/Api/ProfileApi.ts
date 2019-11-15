@@ -13,9 +13,13 @@ export default class ProfileApi
 
     public static UpdateProfile(id: number, profile: string): any
     {
+        console.log(JSON.stringify({ profile: profile}));
         fetch(`https://localhost:5001/Profiles/${id}`, {
             method: "PUT",
-            body: profile
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(profile)
         })
     }
 }

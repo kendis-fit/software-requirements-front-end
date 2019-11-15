@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import RequirementsEmpty from "./RequirementsEmpty";
 import RequirementItemContainer from "../../../Containers/RequirementItemContainer";
@@ -19,13 +19,13 @@ const RequirementList = ({ Requirements, ParentId, Level }: IRequirementList) =>
         <>
             {
                 Requirements.map((r, i) =>
-                    <>
-                    <RequirementItemContainer key={i} Id={r.Id} ParentId={ParentId} Name={r.Name} Level={ParentId === undefined ? Level : Level + 1} />
-                    {
-                        r.Requirements && r.Requirements.length > 0 &&
-                        <RequirementList Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1} />
-                    }
-                    </>
+                    <Fragment key={i}>
+                        <RequirementItemContainer Id={r.Id} ParentId={ParentId} Name={r.Name} Level={ParentId === undefined ? Level : Level + 1} />
+                        {
+                            r.Requirements && r.Requirements.length > 0 &&
+                            <RequirementList Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1} />
+                        }
+                    </Fragment>
                 )
             }
         </>
