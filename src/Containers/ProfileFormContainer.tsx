@@ -2,6 +2,10 @@ import { connect } from "react-redux";
 
 import ProfileForm from "../Components/RightPanel/Profile/ProfileForm";
 
+import IChangeValue from "../Interfaces/Profile/IChangeValue";
+
+import { UpdateProfile } from "../Actions/ProfileActions";
+
 const mapStateToProps = (state: any) => {
     return {
         Indexes: state.Profile,
@@ -9,4 +13,8 @@ const mapStateToProps = (state: any) => {
     }
 };
 
-export default connect(mapStateToProps)(ProfileForm);
+const mapDispatchToProps = (dispatch: any) => ({
+    UpdateProfile: (changeValue: IChangeValue) => dispatch(UpdateProfile(changeValue))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

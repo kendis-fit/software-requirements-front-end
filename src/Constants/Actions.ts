@@ -7,6 +7,7 @@ export const REMOVE_REQUIREMENT: string = "REMOVE_REQUIREMENT";
 
 // Profile
 export const SET_PROFILE: string = "SET_PROFILE";
+export const UPDATE_PROFILE: string = "UPDATE_PROFILE";
 
 // Requirement
 export const SET_REQUIREMENT: string = "SET_REQUIREMENT";

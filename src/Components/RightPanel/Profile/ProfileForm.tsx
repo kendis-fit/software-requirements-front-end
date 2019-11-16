@@ -1,28 +1,28 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-import Index from "./Index";
 import IndexesEmpty from "./IndexesEmpty";
 import { Button } from "../../Styles/Button";
-import { ButtonsBlock } from "../../Styles/Block";
-import CoefficientList from "./Coefficients/CoefficientList";
+import { Wrapper } from "../../Styles/Wrapper";
+import { ButtonsBlock, FlexBlock } from "../../Styles/Block";
+import { TextUnderline, TextSpace } from "../../Styles/Text";
 
 import IIndex from "../../../Interfaces/Profile/IIndex";
 import ETypeColor from "../../../Constants/Enumerations/ETypeColor";
-// import ICoefficient from "../../../Interfaces/Profile/ICoefficient";
-// import IPrimitive from "../../../Interfaces/Profile/IPrimitive";
-// import ProfileApi from "../../../Api/ProfileApi";
+import EDirection from "../../../Constants/Enumerations/EDirection";
+import IChangeValue from "../../../Interfaces/Profile/IChangeValue";
+
+import ProfileApi from "../../../Api/ProfileApi";
 
 interface IProfileForm
 {
     Id: number;
     Indexes: Array<IIndex>;
+    UpdateProfile: (changeValue: IChangeValue) => void;
 }
 
-const ProfileForm = ({ Id, Indexes }: IProfileForm) => {
+const ProfileForm = ({ Id, Indexes, UpdateProfile }: IProfileForm) => {
 
-    const parse = (): void => {
-
-    }
+    console.log(Indexes);
 
     if (Indexes.length === 0)
         return <IndexesEmpty />
@@ -30,17 +30,65 @@ const ProfileForm = ({ Id, Indexes }: IProfileForm) => {
         <>
             <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "850px" }}>
                 {
-                    Indexes.map((p, i) => 
-                        <div key={i} style={{ display: "flex", flexDirection: "row", margin: "20px" }}>
-                            <Index Id={i} Name={p.Name} NameIndex={p.NameIndex} />
-                            <CoefficientList Id={i} Coefficients={p.Coefficients} />
-                        </div>
+                    Indexes.map((p, i) =>
+                        <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
+                            <FlexBlock Direction={EDirection.ROW}>
+                                <TextSpace>{p.NameIndex}</TextSpace>
+                                <TextSpace>
+                                    <TextUnderline>{p.Name}</TextUnderline>
+                                    <span>:</span>   
+                                </TextSpace>
+                                {
+                                    p.Coefficients.map((c, i) => {
+
+                                    console.log(c.Value);
+
+                                    return <Fragment key={i}>
+                                        {
+                                            c.NameMetric ?
+                                            <>
+                                                <TextSpace>{c.NameMetric}</TextSpace>
+                                                <TextSpace>
+                                                    <TextUnderline>{c.Name}</TextUnderline>
+                                                </TextSpace>
+                                            </>
+                                            :
+                                            <TextSpace>{c.Name}</TextSpace>
+                                        }
+                                        <input onChange={(e: any) => {
+
+                                            let value = null;
+                                            if (!Number.isNaN(e.target.value) && e.target.value > 0)
+                                                value = Number(e.target.value);
+
+                                            UpdateProfile({ Name: c.Name, NameIndex: p.NameIndex, Value: value  })}
+                                        } readOnly={c.Primitives ? true : false} value={c.Value || ""} />
+                                        {
+                                            c.Primitives && 
+                                            <>
+                                                <TextSpace>Primitives</TextSpace>
+                                                {
+                                                    c.Primitives.map((p, i) => 
+                                                        <Fragment key={i}>
+                                                            <TextSpace>{p.Name}</TextSpace>
+                                                            <input value={p.Value ? p.Value : undefined} />
+                                                        </Fragment>
+                                                    )
+                                                }
+                                            </>
+                                        }
+                                    </Fragment>
+                                    }
+                                    )
+                                }
+                            </FlexBlock>
+                        </Wrapper>
                     )
                 }
             </div>
             <ButtonsBlock>
                 <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.SECONDARY} TypeButton="button" Rounde="3px">Visualisation</Button>
-                <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="button" Rounde="3px" onClick={() => parse()}>Save</Button>
+                <Button onClick={() => ProfileApi.UpdateProfile(Id, JSON.stringify(Indexes))} style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="button" Rounde="3px">Save</Button>
             </ButtonsBlock>
         </>
     );
