@@ -23,7 +23,7 @@ const RequirementItem = ({ Id, ParentId, Name, Level, SetRequirement, SetProfile
             SetRequirement(Number(e.target.dataset.id));
             ShowMenu({ Name: EMenu.REQUIREMENT_MENU, X: e.pageX, Y: e.pageY });
         }}>
-            <span>{Name}</span>
+            <span>{Name} {ParentId ? "" : "(project)"}</span>
         </TreeNode>
     );
 }
