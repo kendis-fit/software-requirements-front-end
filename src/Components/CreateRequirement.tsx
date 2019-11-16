@@ -11,14 +11,14 @@ import ETypeColor from "../Constants/Enumerations/ETypeColor";
 
 interface ICreateRequirement
 {
-    CreateRequirement: (name: string, parentId?: number) => void;
-    ParentId?: number;
+    CreateRequirement: (name: string, parentId: number | null) => void;
+    ParentId: number | null;
 }
 
 const CreateRequirement = ({ CreateRequirement, ParentId }: ICreateRequirement) => {
 
     const [nameRequirement, setNameRequirement] = useState("");
-
+    console.log(ParentId);
     return(
         <Form> 
             <DarkBackgroundBlock></DarkBackgroundBlock>

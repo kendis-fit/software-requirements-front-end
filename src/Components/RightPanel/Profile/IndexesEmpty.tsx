@@ -1,12 +1,17 @@
 import React from "react";
 
-import { Text } from "../../Styles/Text";
+import { Text as TextArea } from "../../Styles/Text";
 import { BlockCenter } from "../../Styles/Block";
 
-const IndexesEmpty = () => {
+interface IIndexEmpty
+{
+    Text: string;
+}
+
+const IndexesEmpty = ({ Text }: IIndexEmpty) => {
     return(
         <BlockCenter>
-            <Text Size="172px">Empty</Text>
+            <TextArea Size="172px">{Text}</TextArea>
         </BlockCenter>
     );
 }

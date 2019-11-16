@@ -6,8 +6,17 @@ export default class ProfileApi
     {
         return (dispatch: any) => {
             fetch(`https://localhost:5001/Profiles/${id}`)
-            .then(r => r.json())
-            .then(r => dispatch(SetProfile(r)));
+            .then(r => {
+                if (r.status === 204) {
+                    dispatch(SetProfile(null));
+                } else if (r.status === 200) {
+                    return r.json();
+                }
+                return null;
+            })
+            .then(r => {
+                if (r !== null) dispatch(SetProfile(r));
+            });
         }
     }
 

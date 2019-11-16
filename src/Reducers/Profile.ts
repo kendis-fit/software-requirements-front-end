@@ -7,10 +7,10 @@ import { SET_PROFILE, UPDATE_PROFILE } from "../Constants/Actions";
 const initialState: Array<IProfile> = new Array<IProfile>();
 
 type ActionType = 
-    | Action<'SET_PROFILE', { value: Array<IProfile> }>
+    | Action<'SET_PROFILE', { value: Array<IProfile> | null }>
     | Action<'UPDATE_PROFILE', { value: IChangeValue }>
 
-const Profile = (state: Array<IProfile> | IChangeValue = initialState, action: ActionType) => {
+const Profile = (state: Array<IProfile> | IChangeValue | null = initialState, action: ActionType) => {
     switch (action.type)
     {
         case SET_PROFILE:

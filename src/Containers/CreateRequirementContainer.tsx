@@ -10,8 +10,10 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    CreateRequirement: (name: string, parentId?: number) => parentId ? // if parentId null, then it creates project, otherwise requirement
+    CreateRequirement: (name: string, parentId: number | null) => {
+        parentId !== null ? // if parentId null, then it creates project, otherwise requirement
         dispatch(RequirementApi.CreateRequirement(name, parentId)) : dispatch(ProjectApi.CreateProject(name))
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequirement);

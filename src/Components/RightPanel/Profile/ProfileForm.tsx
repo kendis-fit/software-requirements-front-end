@@ -16,16 +16,14 @@ import ProfileApi from "../../../Api/ProfileApi";
 interface IProfileForm
 {
     Id: number;
-    Indexes: Array<IIndex>;
+    Indexes: Array<IIndex> | null;
     UpdateProfile: (changeValue: IChangeValue) => void;
 }
 
 const ProfileForm = ({ Id, Indexes, UpdateProfile }: IProfileForm) => {
 
-    console.log(Indexes);
-
-    if (Indexes.length === 0)
-        return <IndexesEmpty />
+    if (Indexes === null || Indexes.length === 0)
+        return <IndexesEmpty Text={Indexes === null ? "Group don't have profile" : "Empty" } />
     return(
         <>
             <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "850px" }}>
