@@ -3,7 +3,7 @@ import React from "react";
 import { Form } from "./Styles/Form";
 import { Button } from "./Styles/Button";
 import { DarkBackgroundBlock } from "./Styles/Block";
-import { Modal, ModalHeader, ModalBody } from "./Styles/Modal";
+import { Modal, ModalHeader } from "./Styles/Modal";
 
 import ETypeColor from "../Constants/Enumerations/ETypeColor";
 

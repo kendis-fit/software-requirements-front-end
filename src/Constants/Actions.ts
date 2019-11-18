@@ -14,3 +14,7 @@ export const SET_REQUIREMENT: string = "SET_REQUIREMENT";
 
 // Search Requirement
 export const SEARCH_REQUIREMENT: string = "SEARCH_REQUIREMENT";
+
+// Alert
+export const ADD_ALERT: string = "ADD_ALERT";
+export const REMOVE_ALERT: string = "REMOVE_ALERT";
