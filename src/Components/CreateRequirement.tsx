@@ -18,7 +18,7 @@ interface ICreateRequirement
 const CreateRequirement = ({ CreateRequirement, ParentId }: ICreateRequirement) => {
 
     const [nameRequirement, setNameRequirement] = useState("");
-    console.log(ParentId);
+
     return(
         <Form> 
             <DarkBackgroundBlock></DarkBackgroundBlock>

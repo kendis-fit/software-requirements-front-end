@@ -5,7 +5,7 @@ import ISize from "../../Interfaces/StyledComponents/ISize";
 
 export const Modal = styled.div`
     position: relative;
-    background-color: white;
+    background-color: transparent;
     top: 30%;
     margin: 0 auto;
     height: 75px;
@@ -23,7 +23,6 @@ export const ModalHeader = styled.div<ISize>`
     border-top-right-radius: 3px;
     ${props => props.Height ? `height: ${props.Height}` : ""};
     ${props => props.Width ? `width: ${props.Width}` : "width: 100%"};
-    border-bottom: 2px solid black;
     color: white;
 `;
 
@@ -36,4 +35,5 @@ export const ModalBody = styled.div`
     border-bottom-right-radius: 3px;
     color: white;
     font-size: 14px;
+    border-top: 2px solid black;
 `;

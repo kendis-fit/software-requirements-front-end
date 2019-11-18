@@ -6,18 +6,15 @@ import IPosition from "../../../Interfaces/IPosition";
 import EMenu from "../../../Constants/Enumerations/EMenu";
 import IDisplayMenu from "../../../Interfaces/IDisplayMenu";
 
-interface IContextMenu extends IPosition, IDisplayMenu 
-{
-    Id: number;
-    RemoveRequirement: (id: number) => void;
-}
+interface IContextMenu extends IPosition, IDisplayMenu {}
 
-const RequirementMenu = ({ Id, RemoveRequirement, ShowMenu, X, Y }: IContextMenu) => {
+const RequirementMenu = ({ ShowMenu, X, Y }: IContextMenu) => {
 
     return(
         <ContextBlock X={X} Y={Y} Width="150px">
             <ContextItemBlock data-close={false} onClick={() => ShowMenu({ Name: EMenu.ADD_REQUIREMENT })}>Add reqirement</ContextItemBlock>
-            <ContextItemBlock onClick={() => RemoveRequirement(Id)}>Remove requirement</ContextItemBlock>
+            <ContextItemBlock data-close={false} onClick={() => ShowMenu({ Name: EMenu.REMOVE_REQUIREMENT })}>Remove requirement</ContextItemBlock>
+            <ContextItemBlock>Calculate</ContextItemBlock>
         </ContextBlock>
     );
 }
