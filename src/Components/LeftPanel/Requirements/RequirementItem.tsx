@@ -16,11 +16,11 @@ interface IRequirementItem extends IRequirementView
 const RequirementItem = ({ Id, ParentId, Name, Level, SetRequirement, SetProfile, ShowMenu }: IRequirementItem) => {
     return(
         <TreeNode data-id={Id} data-parent-id={ParentId} Level={Level} onClick={(e: any) => {
-            SetRequirement(Number(e.target.dataset.id));
-            SetProfile(e.target.dataset.id);
+            SetRequirement(Number(e.currentTarget.dataset.id));
+            SetProfile(e.currentTarget.dataset.id);
         }}
         onContextMenu={(e: any) => {
-            SetRequirement(Number(e.target.dataset.id));
+            SetRequirement(Number(e.currentTarget.dataset.id));
             ShowMenu({ Name: EMenu.REQUIREMENT_MENU, X: e.pageX, Y: e.pageY });
         }}>
             <span>{Name} {ParentId ? "" : "(project)"}</span>
