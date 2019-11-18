@@ -1,6 +1,7 @@
-import { AddRequirement } from "../Actions/RequirementsActions";
-import IFullRequirement from "../Interfaces/IFullRequirement";
 import IRequirement from "../Interfaces/IRequirement";
+import IFullRequirement from "../Interfaces/IFullRequirement";
+
+import { AddRequirement } from "../Actions/RequirementsActions";
 
 export default class ProjectApi
 {

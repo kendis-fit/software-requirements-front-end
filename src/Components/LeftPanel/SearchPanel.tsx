@@ -1,12 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import { Block } from "../Styles/Block";
 import { Input } from "../Styles/Input";
 import { Wrapper } from "../Styles/Wrapper";
 
 import ETypeColor from "../../Constants/Enumerations/ETypeColor";
-import { SearchRequirement } from "../../Actions/RequirementActions";
 
 interface ISearchPanel
 {
@@ -27,8 +25,4 @@ const SearchPanel = ({ SearchRequirement }: ISearchPanel) => {
     );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    SearchRequirement: (search: string) => dispatch(SearchRequirement(search))
-})
-
-export default connect(null, mapDispatchToProps)(SearchPanel);
+export default SearchPanel;

@@ -1,22 +1,27 @@
 import React from "react";
 
-import EMenu from "../Constants/Enumerations/EMenu";
-import IMenuInteractive from "../Interfaces/IMenuInteractive";
-
-import ProjectMenu from "./ControlPanel/ProjectMenu/ProjectMenu";
-import RequirementMenu from "./LeftPanel/Requirements/ContextMenu/RequirementMenu";
+import ProjectMenuContainer from "../Containers/ProjectMenuContainer";
+import RequirementMenuContainer from "../Containers/RequirementMenuContainer";
 import CreateRequirementContainer from "../Containers/CreateRequirementContainer";
 
-const PopUpMenu = ({ Menu, ShowMenu }: IMenuInteractive) => {
+import IMenu from "../Interfaces/IMenu";
+import EMenu from "../Constants/Enumerations/EMenu";
+
+interface IPopUpMenu
+{
+    Menu: IMenu;
+}
+
+const PopUpMenu = ({ Menu }: IPopUpMenu) => {
     switch (Menu.Name)
     {
         case EMenu.PROJECT:
-            return <ProjectMenu ShowMenu={ShowMenu} X={Menu.X + "px"} Y={Menu.Y + "px"}></ProjectMenu>
+            return <ProjectMenuContainer X={Menu.X + "px"} Y={Menu.Y + "px"} />
         case EMenu.ADD_REQUIREMENT:
         case EMenu.CREATE_PROJECT:
             return <CreateRequirementContainer></CreateRequirementContainer>
         case EMenu.REQUIREMENT_MENU:
-            return <RequirementMenu ShowMenu={ShowMenu} X={Menu.X + "px"} Y={Menu.Y + "px"}></RequirementMenu>
+            return <RequirementMenuContainer X={Menu.X + "px"} Y={Menu.Y + "px"}></RequirementMenuContainer>
         default:
             return <></>
     }

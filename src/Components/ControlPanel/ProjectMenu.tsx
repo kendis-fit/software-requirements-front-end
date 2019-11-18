@@ -1,12 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import { ContextBlock, ContextItemBlock } from "../../Styles/Block";
+import { ContextBlock, ContextItemBlock } from "../Styles/Block";
 
-import IPosition from "../../../Interfaces/IPosition";
-import EMenu from "../../../Constants/Enumerations/EMenu";
-import IDisplayMenu from "../../../Interfaces/IDisplayMenu";
-import { SetRequirement } from "../../../Actions/RequirementActions";
+import IPosition from "../../Interfaces/IPosition";
+import EMenu from "../../Constants/Enumerations/EMenu";
+import IDisplayMenu from "../../Interfaces/IDisplayMenu";
 
 interface IProjectMenu extends IPosition, IDisplayMenu 
 {
@@ -26,8 +24,4 @@ const ProjectMenu = ({ SetRequirement, ShowMenu, X, Y }: IProjectMenu) => {
     );
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    SetRequirement: () => dispatch(SetRequirement(null))
-});
-
-export default connect(null, mapDispatchToProps)(ProjectMenu);
+export default ProjectMenu;
