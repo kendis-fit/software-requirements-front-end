@@ -1,9 +1,9 @@
-import EAlert from "../Constants/Enumerations/EAlert";
+import ETypeColor from "../Constants/Enumerations/ETypeColor";
 
 export default interface IAlert
 {
     Id: number;
-    Type: EAlert;
+    Type: ETypeColor;
     Title: string;
     Message: string;
 }

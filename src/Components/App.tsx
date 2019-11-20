@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Home from "./Pages/Home";
+import AlertListContainer from "../Containers/AlertListContainer";
 import ControlPanelContainer from "../Containers/ControlPanelContainer";
 
 import IMenu from "../Interfaces/IMenu";
@@ -20,6 +21,7 @@ const App = ({ ShowMenu }: IDisplayMenu) => {
 			} }>
 			<ControlPanelContainer />
 			<Home />
+			<AlertListContainer />
 		</div>
 	);
 }

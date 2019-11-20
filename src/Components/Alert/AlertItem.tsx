@@ -1,5 +1,7 @@
 import React from "react";
 
+import { AlertBlock, AlertHeader, AlertTitle, AlertMessage } from "../Styles/Alert";
+
 import IAlert from "../../Interfaces/IAlert";
 
 interface IAlertItem extends IAlert
@@ -9,14 +11,17 @@ interface IAlertItem extends IAlert
 
 const AlertItem = ({ Title, Id, Message, Type, RemoveAlert }: IAlertItem) => {
 
-    setTimeout(() => {
-        RemoveAlert(Id);
-    }, 5000);
+    setTimeout(() => RemoveAlert(Id), 3500);
 
     return(
-        <>
-            
-        </>
+        <AlertBlock Type={Type}>
+            <AlertHeader>
+                <AlertTitle>{Title}</AlertTitle>
+            </AlertHeader>
+            <AlertMessage>
+                <span>{Message}</span>
+            </AlertMessage>
+        </AlertBlock>
     );
 }
 

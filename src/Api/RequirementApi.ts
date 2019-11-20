@@ -1,6 +1,8 @@
 import IRequirement from "../Interfaces/IRequirement";
 import IFullRequirement from "../Interfaces/IFullRequirement";
+import ETypeColor from "../Constants/Enumerations/ETypeColor";
 
+import { AddAlert } from "../Actions/AlertActions";
 import { AddRequirement, RemoveRequirement } from "../Actions/RequirementsActions";
 
 export default class RequirementApi
@@ -15,8 +17,16 @@ export default class RequirementApi
                 },
                 body: JSON.stringify({ name: name })
             })
-            .then(r => r.text())
-            .then(r => dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name, parentId))));
+            .then(r => {
+                if (r.status === 201)
+                    return r.text();
+                throw new Error("Requirement failed to create");
+            })
+            .then(r => {
+                dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name, parentId)));
+                dispatch(AddAlert({ Title: "Success", Id: Math.random(), Message: "Requirement was successfully created", Type: ETypeColor.SUCCESS }));
+            })
+            .catch(error => AddAlert({ Title: "Error", Id: Math.random(), Message: error.toString(), Type: ETypeColor.DANGER }));
         }
     }
 
@@ -29,8 +39,11 @@ export default class RequirementApi
             .then(r => {
                 if (r.status === 200) {
                     dispatch(RemoveRequirement(id));
+                    dispatch(AddAlert({ Title: "Success", Id: Math.random(), Message: "Requirement was successfully removed", Type: ETypeColor.SUCCESS }));
                 }
+                throw new Error("Removing requirement failed to create");
             })
+            .catch(error => AddAlert({ Title: "Error", Id: Math.random(), Message: error.toString(), Type: ETypeColor.DANGER }));
         }
     }
 

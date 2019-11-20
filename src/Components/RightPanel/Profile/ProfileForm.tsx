@@ -11,22 +11,21 @@ import ETypeColor from "../../../Constants/Enumerations/ETypeColor";
 import EDirection from "../../../Constants/Enumerations/EDirection";
 import IChangeValue from "../../../Interfaces/Profile/IChangeValue";
 
-import ProfileApi from "../../../Api/ProfileApi";
-
 interface IProfileForm
 {
     Id: number;
     Indexes: Array<IIndex> | null;
     UpdateProfile: (changeValue: IChangeValue) => void;
+    SubmitUpdateProfile: (id: number, profile: string) => void;
 }
 
-const ProfileForm = ({ Id, Indexes, UpdateProfile }: IProfileForm) => {
+const ProfileForm = ({ Id, Indexes, UpdateProfile, SubmitUpdateProfile }: IProfileForm) => {
 
     if (Indexes === null || Indexes.length === 0)
         return <IndexesEmpty Text={Indexes === null ? "Group don't have profile" : "Empty" } />
     return(
         <>
-            <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 300px)", height: "850px" }}>
+            <div style={{ display: "flex", flexDirection: "column", overflowX: "scroll", overflowY: "scroll", width: "calc(100vw - 250px)", height: "850px" }}>
                 {
                     Indexes.map((p, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
@@ -86,7 +85,7 @@ const ProfileForm = ({ Id, Indexes, UpdateProfile }: IProfileForm) => {
             </div>
             <ButtonsBlock>
                 <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.SECONDARY} TypeButton="button" Rounde="3px">Visualisation</Button>
-                <Button onClick={() => ProfileApi.UpdateProfile(Id, JSON.stringify(Indexes))} style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="button" Rounde="3px">Save</Button>
+                <Button onClick={() => SubmitUpdateProfile(Id, JSON.stringify(Indexes))} style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="button" Rounde="3px">Save</Button>
             </ButtonsBlock>
         </>
     );
