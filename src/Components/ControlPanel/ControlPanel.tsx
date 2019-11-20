@@ -29,7 +29,7 @@ const ControlPanel = ({ ShowMenu }: IDisplayMenu) => {
             {
                 menuList.map((m, i) =>
                     <ControlItemBlock key={i} data-close={false} onClick={(e: any): void => 
-                        changeMenu(m.Type, e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().bottom)
+                        changeMenu(m.Type, e.currentTarget.getBoundingClientRect().left, e.currentTarget.getBoundingClientRect().bottom)
                      }>
                          <TextUnderline data-close={false}>{m.Name.substr(0, 1)}</TextUnderline>
                          <span data-close={false}>{m.Name.substr(1)}</span>

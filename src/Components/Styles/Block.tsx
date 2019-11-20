@@ -107,3 +107,15 @@ export const BlockCenter = styled.div`
 export const ButtonsBlock = styled(FlexBlock)`
     justify-content: flex-end;
 `;
+
+export const BlockShowHide = styled.div`
+    width: 20px;
+    height: 20px;
+    background: ${Colors.LightGray};
+    font-size: 15px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid black;
+    color: black;
+    margin-right: 5px;
+`;
