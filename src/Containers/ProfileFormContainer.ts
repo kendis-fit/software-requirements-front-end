@@ -10,7 +10,8 @@ import ProfileApi from "../Api/ProfileApi";
 
 const mapStateToProps = (state: any) => ({
     Indexes: state.Profile,
-    Id: state.Requirement
+    Id: state.Requirement,
+    LoadProfile: state.Loader.Profile
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

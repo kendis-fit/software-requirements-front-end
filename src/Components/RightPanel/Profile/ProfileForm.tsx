@@ -15,12 +15,15 @@ interface IProfileForm
 {
     Id: number;
     Indexes: Array<IIndex> | null;
+    LoadProfile: boolean;
     UpdateProfile: (changeValue: IChangeValue) => void;
     SubmitUpdateProfile: (id: number, profile: string) => void;
 }
 
-const ProfileForm = ({ Id, Indexes, UpdateProfile, SubmitUpdateProfile }: IProfileForm) => {
+const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile }: IProfileForm) => {
 
+    if (LoadProfile)
+        return <span>Loading...</span>
     if (Indexes === null || Indexes.length === 0)
         return <IndexesEmpty Text={Indexes === null ? "Group don't have profile" : "Empty" } />
     return(

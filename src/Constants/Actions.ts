@@ -18,3 +18,7 @@ export const SEARCH_REQUIREMENT: string = "SEARCH_REQUIREMENT";
 // Alert
 export const ADD_ALERT: string = "ADD_ALERT";
 export const REMOVE_ALERT: string = "REMOVE_ALERT";
+
+// Loader
+export const LOAD_PROFILE: string = "LOAD_PROFILE";
+export const LOAD_REQUIREMENTS: string = "LOAD_REQUIREMENTS";

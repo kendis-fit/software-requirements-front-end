@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 
 import RequirementList from "../Components/LeftPanel/Requirements/RequirementList";
+
 import IRequirement from "../Interfaces/IRequirement";
 
 const mapStateToProps = (state: any) => ({
-    Requirements: state.SearchRequirement.length > 0 ? searchRequirement(state.Requirements, state.SearchRequirement) : state.Requirements
+    Requirements: state.SearchRequirement.length > 0 ? searchRequirement(state.Requirements, state.SearchRequirement) : state.Requirements,
+    LoadRequirements: state.Loader.Requirements
 });
 
 function searchRequirement(requirements: any, search: string)

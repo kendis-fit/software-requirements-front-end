@@ -4,33 +4,47 @@ import ETypeColor from "../Constants/Enumerations/ETypeColor";
 import IFullRequirement from "../Interfaces/IFullRequirement";
 
 import { AddAlert } from "../Actions/AlertActions";
+import { LoadRequirements } from "../Actions/LoaderActions";
 import { AddRequirement } from "../Actions/RequirementsActions";
 
 export default class ProjectApi
 {
     public static CreateProject(name: string): any
     {
-        return (dispatch: any) => {
-            fetch("https://localhost:5001/Projects", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                },
-                body: JSON.stringify({ name: name })
-            })
-            .then(r => {
-                if (r.status === 201)
-                    return r.text();
-                throw new Error("Project failted to create");
-            })
-            .then(r => {
-                console.log("r", r);
-                if (r) {
-                    dispatch(AddRequirement(this.createRequirement(Number.parseInt(r), name)));
+        return async (dispatch: any) => {
+
+            try
+            {
+                dispatch(LoadRequirements(true));
+
+                const response = await fetch("https://localhost:5001/Projects", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify({ name: name })
+                    });
+
+                if (response.status === 201)
+                {
+                    const result = await response.text();
+
+                    dispatch(AddRequirement(this.createRequirement(Number.parseInt(result), name)));
                     dispatch(AddAlert(this.createAlert("Success", "Project was successfully created", ETypeColor.SUCCESS)));
                 }
-            })
-            .catch(error => dispatch(AddAlert(this.createAlert("Error", error.toString(), ETypeColor.DANGER))));
+                else
+                {
+                    throw new Error("Project failed to create");
+                }
+            }
+            catch (message)
+            {
+                dispatch(AddAlert(this.createAlert("Error", message.toString(), ETypeColor.DANGER)));
+            }
+            finally
+            {
+                dispatch(LoadRequirements(false));
+            }
         }
     }
 
