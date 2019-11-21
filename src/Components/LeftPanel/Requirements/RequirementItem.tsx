@@ -29,7 +29,7 @@ const RequirementItem = ({ Id, ParentId, Name, Level, SetRequirement, SetProfile
             }
         }}>
             <BlockShowHide onClick={(e): any => setVisibilityChildren(e)} data-action="hide">-</BlockShowHide>
-            <span>{Name} {ParentId ? "" : "(project)"}</span>
+            <span>{Name}</span>
         </TreeNode>
     );
 }

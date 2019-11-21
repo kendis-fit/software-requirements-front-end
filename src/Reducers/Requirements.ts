@@ -4,6 +4,8 @@ import IFullRequirement from "../Interfaces/IFullRequirement";
 
 import { ADD_REQUIREMENT, REMOVE_REQUIREMENT } from "../Constants/Actions";
 
+import { AddRequirement, RemoveRequirement } from "../Utils/RequirementAlgorithms";
+
 const initialState: Array<IRequirement> = new Array<IRequirement>();
 
 type ActionType = 
@@ -22,37 +24,17 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
             }
             else
             {
-                addRequirement(state, value.ParentId, value.Requirement);
+                AddRequirement(state, value.ParentId, value.Requirement);
             }
             return [ ...state ];
         case REMOVE_REQUIREMENT:
             const id = action.value as Number;
-            removeRequirement(state, id);
+            RemoveRequirement(state, id);
             return [ ...state ];
         default:
             return state;
     }
 }
 
-function addRequirement(requirements: Array<IRequirement>, parentId: number, requirement: IRequirement) {
-
-    for (let node of requirements) {
-        if (node.Id === parentId) {
-            node.Requirements.push(requirement);
-        } else if (node.Requirements.length > 0) {
-            addRequirement(node.Requirements, parentId, requirement);
-        }
-    }
-}
-
-function removeRequirement(requirements: Array<IRequirement>, id: Number) {
-
-    requirements.forEach((r, i) => {
-        if (r.Id === id)
-            requirements.splice(i, 1);
-        else if (r.Requirements.length > 0)
-            removeRequirement(r.Requirements, id);
-    });
-}
 
 export default Requirements;

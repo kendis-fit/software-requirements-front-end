@@ -41,8 +41,6 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
                                 {
                                     p.Coefficients.map((c, i) => {
 
-                                    console.log(c.Value);
-
                                     return <Fragment key={i}>
                                         {
                                             c.NameMetric ?
