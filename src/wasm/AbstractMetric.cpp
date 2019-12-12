@@ -1,9 +1,8 @@
 #include "AbstractMetric.h"
 
 
-AbstractMetric::AbstractMetric()
+AbstractMetric::AbstractMetric() : _children(8)
 {
-
 }
 
 AbstractMetric::~AbstractMetric()
@@ -13,5 +12,5 @@ AbstractMetric::~AbstractMetric()
 
 MetricWithCoef* AbstractMetric::getChild(int index)
 {
-	return _children[index];
+	return _children.at(index);
 }

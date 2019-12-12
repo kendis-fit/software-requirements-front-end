@@ -5,9 +5,9 @@
 
 class MetricWithCoef;
 
-class AbstractMetric : public ICalculation 
+class AbstractMetric : public ICalculation
 {
-protected: 
+protected:
 	std::vector<MetricWithCoef*> _children;
 public:
 	AbstractMetric();

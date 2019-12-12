@@ -1,3 +1,5 @@
+#include <memory>
+#include "rapidjson/document.h"
 #include "BasicMetricImplementation.h"
 
 limitWithCoef BasicMetricImplementation::retrieveNearestLimit(std::vector<limitWithCoef>& limits, float value)
@@ -25,18 +27,21 @@ BasicMetricImplementation::~BasicMetricImplementation()
 
 float BasicMetricImplementation::doCalculation()
 {
-	float* array = new float[_children.size()];
+	std::unique_ptr<float> array = std::make_unique<float>(_children.size());
 
 	for (size_t i = 0; i < _children.size(); ++i) {
-		array[i] = _children[i]->doCalculation();
+		array.get()[i] = _children[i]->doCalculation();
 		limitWithCoef lim = retrieveNearestLimit(_children[i]->limits,
-			array[i] / _children[i]->expectedMaxResult);
-		array[i] *= lim.coef;
+                            array.get()[i] / _children[i]->expectedMaxResult);
+		array.get()[i] *= lim.coef;
 	}
 
-	float sum = std::accumulate(array, &array[_children.size()], 0);
-
-	delete[] array;
+	float sum = std::accumulate(array.get(), array.get() + _children.size(), 0);
 
 	return sum / _children.size();
+}
+
+void BasicMetricImplementation::initFromJson(const rapidjson::Document& doc, const char* name)
+{
+
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 
+#include "rapidjson/document.h"
+
 #include "ICalculation.h"
 #include "AbstractMetric.h"
 #include "limitWithCoef.h"
@@ -25,6 +27,8 @@ public:
 	MetricWithCoef() = delete;
 
 	virtual float doCalculation() override;
+
+    void initFromJson(const rapidjson::Document& doc);
 
 	virtual ~MetricWithCoef();
 };
