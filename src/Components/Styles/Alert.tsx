@@ -11,6 +11,7 @@ export const Alert = styled.ul`
     height: 850px;
     width: 250px;
     background: transparent;
+    z-index: -1;
 `;
 
 export const AlertBlock = styled.li<ITypeColor>`

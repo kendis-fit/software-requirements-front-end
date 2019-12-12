@@ -13,7 +13,7 @@ interface ISearchPanel
 
 const SearchPanel = ({ SearchRequirement }: ISearchPanel) => {
     return(
-        <Block Height="55px" Type={ETypeColor.PRIMARY}>
+        <Block Height="55px" Type={ETypeColor.PRIMARY} Width="100%">
             <Wrapper Top="10px" Left="20px">
                 <Block Type={ETypeColor.WHITE} Height="35px" Width="210px" Rounde="3px">
                     <Wrapper Top="2px">
