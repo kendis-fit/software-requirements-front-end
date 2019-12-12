@@ -11,6 +11,9 @@
 *.depend
 *.layout
 
+#libs
+[Rr]apidjson
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
