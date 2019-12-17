@@ -1,6 +1,7 @@
 import IRequirement from "../Interfaces/IRequirement";
+import IChangeStatusModify from "../Interfaces/IChangeStatusModify";
 
-export const AddRequirement = (requirements: Array<IRequirement>, parentId: number, requirement: IRequirement) => {
+export const AddRequirement = (requirements: IRequirement[], parentId: number, requirement: IRequirement) => {
 
     for (let node of requirements) {
         if (node.Id === parentId) {
@@ -11,7 +12,7 @@ export const AddRequirement = (requirements: Array<IRequirement>, parentId: numb
     }
 }
 
-export const RemoveRequirement = (requirements: Array<IRequirement>, id: Number) => {
+export const RemoveRequirement = (requirements: IRequirement[], id: Number) => {
 
     requirements.forEach((r, i) => {
         if (r.Id === id)
@@ -21,13 +22,23 @@ export const RemoveRequirement = (requirements: Array<IRequirement>, id: Number)
     });
 }
 
+export const UpdateStatusModify = (requirements: IRequirement[], status: IChangeStatusModify) => {
+    for (let node of requirements) {
+        if (node.Id === status.Id) {
+            node.Write = status.Status;
+        } else if (node.Requirements.length > 0) {
+            UpdateStatusModify(node.Requirements, status);
+        }
+    }
+}
+
 export const SearchRequirement = (requirements: any, search: string) => {
-    const searchRequirements: Array<IRequirement> = new Array<IRequirement>();
+    const searchRequirements: IRequirement[] = [];
     searchInDepth(searchRequirements, requirements, search);
     return searchRequirements;
 }
 
-const searchInDepth = (searchRequirements: Array<IRequirement>, requirements: any, search: string) => {
+const searchInDepth = (searchRequirements: IRequirement[], requirements: any, search: string) => {
     for (let requirement of requirements)
     {
         if (requirement.Name.includes(search))

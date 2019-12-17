@@ -1,16 +1,18 @@
 import Action from "../Constants/Types/ActionReducer";
 import IRequirement from "../Interfaces/IRequirement";
 import IFullRequirement from "../Interfaces/IFullRequirement";
+import IChangeStatusModify from "../Interfaces/IChangeStatusModify";
 
-import { ADD_REQUIREMENT, REMOVE_REQUIREMENT } from "../Constants/Actions";
+import { ADD_REQUIREMENT, REMOVE_REQUIREMENT, UPDATE_STATUS_MODIFY } from "../Constants/Actions";
 
-import { AddRequirement, RemoveRequirement } from "../Utils/RequirementAlgorithms";
+import { AddRequirement, RemoveRequirement, UpdateStatusModify } from "../Utils/RequirementAlgorithms";
 
 const initialState: Array<IRequirement> = new Array<IRequirement>();
 
 type ActionType = 
     | Action<'ADD_REQUIREMENT', { value: IFullRequirement }>
     | Action<'REMOVE_REQUIREMENT', { value: Number }>
+    | Action<'UPDATE_STATUS_MODIFY', { value: IChangeStatusModify }>
 
 const Requirements = (state: Array<IRequirement> = initialState, action: ActionType) => {
     switch (action.type)
@@ -26,11 +28,15 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
             {
                 AddRequirement(state, value.ParentId, value.Requirement);
             }
-            return [ ...state ];
+            return [...state];
         case REMOVE_REQUIREMENT:
             const id = action.value as Number;
             RemoveRequirement(state, id);
-            return [ ...state ];
+            return [...state];
+        case UPDATE_STATUS_MODIFY:
+            const status = action.value as IChangeStatusModify;
+            UpdateStatusModify(state, status);
+            return [...state];
         default:
             return state;
     }

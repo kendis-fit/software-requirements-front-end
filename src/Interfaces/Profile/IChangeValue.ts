@@ -1,7 +1,8 @@
 export default interface IChangeValue
 {
-    Name: string;
     NameIndex: string;
+    NameCoefficient: string;
+    NameMetric?: string;
     NamePrimitive?: string;
     Value: string;
 }

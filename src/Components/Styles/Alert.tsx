@@ -8,10 +8,10 @@ export const Alert = styled.ul`
     position: absolute;
     top: 0;
     left: calc(99% - 250px);
-    height: 850px;
+    /* height: 850px; */
     width: 250px;
     background: transparent;
-    z-index: -1;
+    z-index: 1;
 `;
 
 export const AlertBlock = styled.li<ITypeColor>`

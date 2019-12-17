@@ -1,8 +1,10 @@
 import ETypeColor from "../Constants/Enumerations/ETypeColor";
+import ERequirementWrite from "../Constants/Enumerations/ERequirementWrite";
 
 import { AddAlert } from "../Actions/AlertActions";
 import { SetProfile } from "../Actions/ProfileActions";
 import { LoadProfile } from "../Actions/LoaderActions";
+import { UpdateStatusModify } from "../Actions/RequirementsActions";
 
 export default class ProfileApi
 {
@@ -55,6 +57,7 @@ export default class ProfileApi
                     });
                 if (response.status === 200)
                 {
+                    dispatch(UpdateStatusModify({ Id: id, Status: ERequirementWrite.DONE }));
                     dispatch(AddAlert({ Title: "Success", Id: Math.random(), Message: "Profile was successfully updated", Type: ETypeColor.SUCCESS }));
                 }
                 else

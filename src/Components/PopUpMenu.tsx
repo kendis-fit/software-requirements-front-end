@@ -4,6 +4,7 @@ import ProjectMenuContainer from "../Containers/ProjectMenuContainer";
 import RequirementMenuContainer from "../Containers/RequirementMenuContainer";
 import CreateRequirementContainer from "../Containers/CreateRequirementContainer";
 import ConfirmDeleteRequirementContainer from "../Containers/ConfirmDeleteRequirementContainer";
+import ShowResultContainer from "../Containers/ShowResultContainer";
 
 import IMenu from "../Interfaces/IMenu";
 import EMenu from "../Constants/Enumerations/EMenu";
@@ -25,6 +26,8 @@ const PopUpMenu = ({ Menu }: IPopUpMenu) => {
             return <RequirementMenuContainer X={Menu.X + "px"} Y={Menu.Y + "px"} />
         case EMenu.REMOVE_REQUIREMENT:
             return <ConfirmDeleteRequirementContainer />
+        case EMenu.SHOW_RESULT:
+            return <ShowResultContainer />
         default:
             return <></>
     }

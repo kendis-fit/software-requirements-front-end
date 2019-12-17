@@ -1,9 +1,8 @@
-import IPrimitive from "./IPrimitive";
+import IMetric from "./IMetric";
 
 export default interface ICoefficient
 {
     Name: string;
-    NameMetric?: string;
     Value: number | null;
-    Primitives?: Array<IPrimitive>;
+    Metric?: IMetric;
 }

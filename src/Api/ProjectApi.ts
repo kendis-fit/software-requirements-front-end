@@ -6,6 +6,7 @@ import IFullRequirement from "../Interfaces/IFullRequirement";
 import { AddAlert } from "../Actions/AlertActions";
 import { LoadRequirements } from "../Actions/LoaderActions";
 import { AddRequirement } from "../Actions/RequirementsActions";
+import ERequirementWrite from "../Constants/Enumerations/ERequirementWrite";
 
 export default class ProjectApi
 {
@@ -48,6 +49,30 @@ export default class ProjectApi
         }
     }
 
+    public static async GetProject(id: number)
+    {
+        try
+        {
+            const response = await fetch(`https://localhost:5001/Projects/${id}/Profiles`);
+
+            if (response.status === 200)
+            {
+                const result = await response.text();
+
+                return result;
+            }
+            else
+            {
+                throw new Error("Project failed to calculate");
+            }
+        }
+        catch (message)
+        {
+            alert(message);
+        }
+        return "";
+    }
+
     private static createAlert(title: string, message: string, type: ETypeColor): IAlert
     {
         const newAlert: IAlert = {
@@ -65,7 +90,8 @@ export default class ProjectApi
         const newRequirement: IRequirement = {
             Id: id,
             Name: name,
-            Requirements: new Array<IRequirement>()
+            Requirements: new Array<IRequirement>(),
+            Write: ERequirementWrite.CREATED
         }
         
         return {

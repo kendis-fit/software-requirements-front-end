@@ -1,6 +1,7 @@
 import IRequirement from "../Interfaces/IRequirement";
 import IFullRequirement from "../Interfaces/IFullRequirement";
 import ETypeColor from "../Constants/Enumerations/ETypeColor";
+import ERequirementWrite from "../Constants/Enumerations/ERequirementWrite";
 
 import { AddAlert } from "../Actions/AlertActions";
 import { LoadRequirements } from "../Actions/LoaderActions";
@@ -83,7 +84,8 @@ export default class RequirementApi
         const newRequirement: IRequirement = {
             Id: id,
             Name: name,
-            Requirements: new Array<IRequirement>()
+            Requirements: new Array<IRequirement>(),
+            Write: ERequirementWrite.CREATED
         }
         
         return {

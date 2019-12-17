@@ -14,7 +14,7 @@ const RequirementMenu = ({ ShowMenu, X, Y }: IContextMenu) => {
         <ContextBlock X={X} Y={Y} Width="150px">
             <ContextItemBlock data-close={false} onClick={() => ShowMenu({ Name: EMenu.ADD_REQUIREMENT })}>Add reqirement</ContextItemBlock>
             <ContextItemBlock data-close={false} onClick={() => ShowMenu({ Name: EMenu.REMOVE_REQUIREMENT })}>Remove requirement</ContextItemBlock>
-            <ContextItemBlock>Calculate</ContextItemBlock>
+            <ContextItemBlock data-close={false} onClick={() => ShowMenu({ Name: EMenu.SHOW_RESULT }) }>Calculate</ContextItemBlock>
         </ContextBlock>
     );
 }

@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 import INode from "../../Interfaces/StyledComponents/INode";
 import Colors from "../../Constants/Colors";
+import IWriteColor from "../../Interfaces/StyledComponents/IWriteColor";
+import ERequirementWrite from "../../Constants/Enumerations/ERequirementWrite";
+
+interface ITreeNode extends INode, IWriteColor { }
 
 export const List = styled.ul`
 
 `;
 
-export const TreeNode = styled.li<INode>`
+export const TreeNode = styled.li<ITreeNode>`
     ${props => {
 
         let marginLeft: number = 10;
@@ -19,5 +23,12 @@ export const TreeNode = styled.li<INode>`
     :hover {
         background-color: ${Colors.LightBlueHover};
         color: white;
-    }
+    };
+    color: ${props => {
+        switch (props.Write) {
+            case ERequirementWrite.CREATED: return Colors.DarkYellow;
+            case ERequirementWrite.DONE:
+            default: return "black";
+        }
+    }}
 `;

@@ -4,7 +4,7 @@ import ProfileFormContainer from "../../Containers/ProfileFormContainer";
 
 const RightPanel = () => {
     return(
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "calc(100% - 300px)" }}>
             <ProfileFormContainer></ProfileFormContainer>
         </div>
     );

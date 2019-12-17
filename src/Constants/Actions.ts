@@ -4,6 +4,7 @@ export const SHOW_MENU: string = "SHOW_MENU";
 // Requirements
 export const ADD_REQUIREMENT: string = "ADD_REQUIREMENT";
 export const REMOVE_REQUIREMENT: string = "REMOVE_REQUIREMENT";
+export const UPDATE_STATUS_MODIFY: string = "UPDATE_STATUS_MODIFY";
 
 // Profile
 export const SET_PROFILE: string = "SET_PROFILE";
