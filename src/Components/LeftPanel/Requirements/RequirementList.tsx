@@ -8,25 +8,24 @@ import IRequirementLevel from "../../../Interfaces/IRequirementLevel";
 
 interface IRequirementList extends IRequirementLevel
 {
-    Requirements: Array<IRequirement>;
+    Requirements: IRequirement[];
     LoadRequirements: boolean;
 }
 
 const RequirementList = ({ LoadRequirements, Requirements, ParentId, Level }: IRequirementList) => {
-
     if (LoadRequirements && !ParentId)
         return <span>Loading...</span>;
     if (Requirements.length === 0 && !ParentId)
-        return <RequirementsEmpty />
+        return <RequirementsEmpty />;
     return(
         <>
             {
                 Requirements.map((r, i) =>
                     <Fragment key={i}>
-                        <RequirementItemContainer Write={r.Write} Id={r.Id} ParentId={ParentId} Name={r.Name} Level={ParentId === undefined ? Level : Level + 1} />
+                        <RequirementItemContainer Write={r.write} Id={r.id} ParentId={ParentId} Name={r.name} Level={ParentId === undefined ? Level : Level + 1} />
                         {
-                            r.Requirements && r.Requirements.length > 0 &&
-                            <RequirementList LoadRequirements={false} Requirements={r.Requirements} ParentId={r.Id} Level={Level + 1} />
+                            r.requirements && r.requirements.length > 0 &&
+                            <RequirementList LoadRequirements={false} Requirements={r.requirements} ParentId={r.id} Level={Level + 1} />
                         }
                     </Fragment>
                 )

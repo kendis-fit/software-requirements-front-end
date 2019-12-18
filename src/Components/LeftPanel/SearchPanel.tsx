@@ -17,7 +17,7 @@ const SearchPanel = ({ SearchRequirement }: ISearchPanel) => {
             <Wrapper Top="10px" Left="20px">
                 <Block Type={ETypeColor.WHITE} Height="35px" Width="210px" Rounde="3px">
                     <Wrapper Top="2px">
-                        <Input onChange={e => SearchRequirement(e.target.value)} placeholder="Enter a requirement" />
+                        <Input onChange={e => SearchRequirement(e.target.value)} placeholder="Find a requirement" />
                     </Wrapper>
                 </Block>
             </Wrapper>

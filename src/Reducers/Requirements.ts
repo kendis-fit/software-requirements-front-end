@@ -7,14 +7,14 @@ import { ADD_REQUIREMENT, REMOVE_REQUIREMENT, UPDATE_STATUS_MODIFY } from "../Co
 
 import { AddRequirement, RemoveRequirement, UpdateStatusModify } from "../Utils/RequirementAlgorithms";
 
-const initialState: Array<IRequirement> = new Array<IRequirement>();
+const initialState: IRequirement[] = [];
 
 type ActionType = 
     | Action<'ADD_REQUIREMENT', { value: IFullRequirement }>
     | Action<'REMOVE_REQUIREMENT', { value: Number }>
     | Action<'UPDATE_STATUS_MODIFY', { value: IChangeStatusModify }>
 
-const Requirements = (state: Array<IRequirement> = initialState, action: ActionType) => {
+const Requirements = (state: IRequirement[] = initialState, action: ActionType) => {
     switch (action.type)
     {
         case ADD_REQUIREMENT:
@@ -22,6 +22,7 @@ const Requirements = (state: Array<IRequirement> = initialState, action: ActionT
             
             if (value.ParentId === null) // value is project and isn't requirement
             {
+                localStorage["projectId"] = value.Requirement.id;
                 state.push(value.Requirement);
             }
             else

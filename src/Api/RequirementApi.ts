@@ -82,10 +82,10 @@ export default class RequirementApi
     {
         
         const newRequirement: IRequirement = {
-            Id: id,
-            Name: name,
-            Requirements: new Array<IRequirement>(),
-            Write: ERequirementWrite.CREATED
+            id: id,
+            name: name,
+            requirements: new Array<IRequirement>(),
+            write: ERequirementWrite.CREATED
         }
         
         return {

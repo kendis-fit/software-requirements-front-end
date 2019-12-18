@@ -49,7 +49,39 @@ export default class ProjectApi
         }
     }
 
-    public static async GetProject(id: number)
+    public static GetProject(id: number)
+    {
+        return async (dispatch: any) => {
+
+            try
+            {
+                dispatch(LoadRequirements(true));
+
+                const response = await fetch(`https://localhost:5001/Projects/${id}`);
+                
+                if (response.status === 200)
+                {
+                    const result = await response.json();
+                    dispatch(AddRequirement({ ParentId: null, Requirement: result }));
+                }
+                else
+                {
+                    throw new Error();
+                }
+            }
+            catch (message)
+            {
+                console.log("lol chto", message);
+                delete localStorage["projectId"];
+            }
+            finally
+            {
+                dispatch(LoadRequirements(false));
+            }
+        }
+    }
+
+    public static async GetResult(id: number)
     {
         try
         {
@@ -88,10 +120,10 @@ export default class ProjectApi
     {
         
         const newRequirement: IRequirement = {
-            Id: id,
-            Name: name,
-            Requirements: new Array<IRequirement>(),
-            Write: ERequirementWrite.CREATED
+            id: id,
+            name: name,
+            requirements: new Array<IRequirement>(),
+            write: ERequirementWrite.CREATED
         }
         
         return {

@@ -4,10 +4,10 @@ import IChangeStatusModify from "../Interfaces/IChangeStatusModify";
 export const AddRequirement = (requirements: IRequirement[], parentId: number, requirement: IRequirement) => {
 
     for (let node of requirements) {
-        if (node.Id === parentId) {
-            node.Requirements.push(requirement);
-        } else if (node.Requirements.length > 0) {
-            AddRequirement(node.Requirements, parentId, requirement);
+        if (node.id === parentId) {
+            node.requirements.push(requirement);
+        } else if (node.requirements.length > 0) {
+            AddRequirement(node.requirements, parentId, requirement);
         }
     }
 }
@@ -15,19 +15,19 @@ export const AddRequirement = (requirements: IRequirement[], parentId: number, r
 export const RemoveRequirement = (requirements: IRequirement[], id: Number) => {
 
     requirements.forEach((r, i) => {
-        if (r.Id === id)
+        if (r.id === id)
             requirements.splice(i, 1);
-        else if (r.Requirements.length > 0)
-            RemoveRequirement(r.Requirements, id);
+        else if (r.requirements.length > 0)
+            RemoveRequirement(r.requirements, id);
     });
 }
 
 export const UpdateStatusModify = (requirements: IRequirement[], status: IChangeStatusModify) => {
     for (let node of requirements) {
-        if (node.Id === status.Id) {
-            node.Write = status.Status;
-        } else if (node.Requirements.length > 0) {
-            UpdateStatusModify(node.Requirements, status);
+        if (node.id === status.Id) {
+            node.write = status.Status;
+        } else if (node.requirements.length > 0) {
+            UpdateStatusModify(node.requirements, status);
         }
     }
 }

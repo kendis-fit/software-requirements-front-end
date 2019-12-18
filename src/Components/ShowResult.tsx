@@ -21,7 +21,7 @@ const ShowResult = ({ Requirement }: IShowResult) => {
 
             (async () => {
 
-                const json: string = await ProjectApi.GetProject(Requirement);
+                const json: string = await ProjectApi.GetResult(Requirement);
                 setResult(json);
             })();
         }

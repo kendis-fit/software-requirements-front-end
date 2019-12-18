@@ -15,4 +15,4 @@ export const RemoveRequirement = (id: Number) => ({
 export const UpdateStatusModify = (status: IChangeStatusModify) => ({
     type: UPDATE_STATUS_MODIFY,
     value: status
-})
+});

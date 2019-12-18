@@ -28,16 +28,18 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
     if (Indexes === null || Indexes.length === 0)
         return <IndexesEmpty Text={Indexes === null ? "Group doesn't have profile" : "Empty" } />
     
-    const isCoeffsMore1 = (coeffs: ICoefficient[]): boolean => {
+    const isCoeffsLessEqual1 = (coeffs: ICoefficient[]): boolean => {
         if (coeffs.length === 0) return true;
         const values = coeffs.map(c => c.Value || 0);
+        const metrics = coeffs.map(c => c.Metric ? (c.Metric.Value || 0) : 0);
         const result = Number.parseFloat(values.reduce((a, b) => a + b).toFixed(1));
-        return result === 1;
+        const resultMetrics = Number.parseFloat(metrics.reduce((a, b) => a + b).toFixed(1))
+        return Math.fround(result) <= 1 && Math.fround(resultMetrics) <= 1;
     }
 
     const SaveProfile = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const isFormValid = Indexes.every(i => isCoeffsMore1(i.Coefficients));
+        const isFormValid = Indexes.every(i => isCoeffsLessEqual1(i.Coefficients));
         if (isFormValid) SubmitUpdateProfile(Id, JSON.stringify(Indexes));
     }
 
@@ -83,8 +85,8 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
                                     </Fragment>
                                     })
                                 }
-                                <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsMore1(I.Coefficients) ? "none" : "" } }>
-                                    Coefficients in total have to give 1
+                                <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsLessEqual1(I.Coefficients) ? "none" : "" } }>
+                                    Coefficients and metrics in total have to give less or equal 1
                                 </div>
                             </FlexBlock>
                         </Wrapper>
