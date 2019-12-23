@@ -6,6 +6,8 @@ import { SetProfile } from "../Actions/ProfileActions";
 import { LoadProfile } from "../Actions/LoaderActions";
 import { UpdateStatusModify } from "../Actions/RequirementsActions";
 
+import Config from "../Constants/Config";
+
 export default class ProfileApi
 {
     public static GetProfile(id: number): any
@@ -16,7 +18,7 @@ export default class ProfileApi
             {
                 dispatch(LoadProfile(true));
             
-                const response = await fetch(`https://localhost:5001/Profiles/${id}`);
+                const response = await fetch(`${Config.Url}/Profiles/${id}`);
                 if (response.status === 200)
                 {
                     const result = await response.json();
@@ -48,7 +50,7 @@ export default class ProfileApi
             
             try
             {
-                const response = await fetch(`https://localhost:5001/Profiles/${id}`, {
+                const response = await fetch(`${Config.Url}/Profiles/${id}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"

@@ -41,13 +41,13 @@ export const SearchRequirement = (requirements: any, search: string) => {
 const searchInDepth = (searchRequirements: IRequirement[], requirements: any, search: string) => {
     for (let requirement of requirements)
     {
-        if (requirement.Name.includes(search))
+        if (requirement.name.includes(search))
         {
             searchRequirements.push(requirement);
         }
-        if (requirement.Requirements.length > 0)
+        if (requirement.requirements.length > 0)
         {
-            searchInDepth(searchRequirements, requirement.Requirements, search);
+            searchInDepth(searchRequirements, requirement.requirements, search);
         }
     }
 }

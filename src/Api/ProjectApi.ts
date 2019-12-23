@@ -8,6 +8,8 @@ import { LoadRequirements } from "../Actions/LoaderActions";
 import { AddRequirement } from "../Actions/RequirementsActions";
 import ERequirementWrite from "../Constants/Enumerations/ERequirementWrite";
 
+import Config from "../Constants/Config";
+
 export default class ProjectApi
 {
     public static CreateProject(name: string): any
@@ -18,7 +20,7 @@ export default class ProjectApi
             {
                 dispatch(LoadRequirements(true));
 
-                const response = await fetch("https://localhost:5001/Projects", {
+                const response = await fetch(`${Config.Url}/Projects`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"
@@ -57,7 +59,7 @@ export default class ProjectApi
             {
                 dispatch(LoadRequirements(true));
 
-                const response = await fetch(`https://localhost:5001/Projects/${id}`);
+                const response = await fetch(`${Config.Url}/Projects/${id}`);
                 
                 if (response.status === 200)
                 {
@@ -85,7 +87,7 @@ export default class ProjectApi
     {
         try
         {
-            const response = await fetch(`https://localhost:5001/Projects/${id}/Profiles`);
+            const response = await fetch(`${Config.Url}/Projects/${id}/Profiles`);
 
             if (response.status === 200)
             {

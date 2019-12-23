@@ -7,6 +7,8 @@ import { AddAlert } from "../Actions/AlertActions";
 import { LoadRequirements } from "../Actions/LoaderActions";
 import { AddRequirement, RemoveRequirement } from "../Actions/RequirementsActions";
 
+import Config from "../Constants/Config";
+
 export default class RequirementApi
 {
     public static CreateRequirement(name: string, parentId: number): any
@@ -17,7 +19,7 @@ export default class RequirementApi
             {
                 dispatch(LoadRequirements(true));
                 
-                const response = await fetch(`https://localhost:5001/Requirements/${parentId}`, {
+                const response = await fetch(`${Config.Url}/Requirements/${parentId}`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"
@@ -54,7 +56,7 @@ export default class RequirementApi
             {
                 dispatch(LoadRequirements(true));
 
-                const response = await fetch(`https://localhost:5001/Requirements/${id}`, {
+                const response = await fetch(`${Config.Url}/Requirements/${id}`, {
                         method: "DELETE"
                     });
                 if (response.status === 200)

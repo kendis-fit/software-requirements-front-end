@@ -12,7 +12,6 @@ const Alerts = (state: Array<IAlert> = initialState, action: ActionType) => {
     switch (action.type)
     {
         case ADD_ALERT:
-            console.log(action.value);
             state.push(action.value as IAlert);
             return [ ...state ];
         case REMOVE_ALERT:

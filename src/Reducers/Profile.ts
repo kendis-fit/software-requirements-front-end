@@ -37,9 +37,8 @@ const Profile = (state: IProfile[] | IChangeValue | null = initialState, action:
                                             primitive.Value = !changeData.Value ? null : Number.parseFloat(changeData.Value);
                                             if (coeff.Metric.Primitives.every(p => isNumber(p.Value))) {
                                                 let result = 0;
-    
                                                 if (primitive.Value === null) return state;
-    
+                                                
                                                 if (changeData.NamePrimitive === "RPSSEQ") {
                                                     result = primitive.Value / 2;
                                                 } else if (changeData.NamePrimitive === "RVSSEQ") {

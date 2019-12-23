@@ -42,7 +42,7 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
         const isFormValid = Indexes.every(i => isCoeffsLessEqual1(i.Coefficients));
         if (isFormValid) SubmitUpdateProfile(Id, JSON.stringify(Indexes));
     }
-
+    console.log(Indexes);
     return(
         <form onSubmit={SaveProfile}>
             <div style={{ overflowX: "scroll", overflowY: "scroll", width: "100%", height: "850px" }}>
