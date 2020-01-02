@@ -80,6 +80,30 @@ export default class RequirementApi
         }
     }
 
+    public static async GetResult(id: number, indexId: string)
+    {
+        try
+        {
+            const response = await fetch(`${Config.Url}/Requirements/${id}/Indexes/${indexId}`);
+
+            if (response.status === 200)
+            {
+                const result = await response.text();
+
+                return result;
+            }
+            else
+            {
+                throw new Error("Requirement failed to calculate");
+            }
+        }
+        catch (message)
+        {
+            alert(message);
+        }
+        return "";
+    }
+
     private static createRequirement(id: number, name: string, parentId: number): IFullRequirement
     {
         

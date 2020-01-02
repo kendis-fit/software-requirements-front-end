@@ -11,7 +11,7 @@ const initialState: IRequirement[] = [];
 
 type ActionType = 
     | Action<'ADD_REQUIREMENT', { value: IFullRequirement }>
-    | Action<'REMOVE_REQUIREMENT', { value: Number }>
+    | Action<'REMOVE_REQUIREMENT', { value: number }>
     | Action<'UPDATE_STATUS_MODIFY', { value: IChangeStatusModify }>
 
 const Requirements = (state: IRequirement[] = initialState, action: ActionType) => {

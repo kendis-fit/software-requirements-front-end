@@ -83,11 +83,11 @@ export default class ProjectApi
         }
     }
 
-    public static async GetResult(id: number)
+    public static async GetResult(id: number, indexId: string)
     {
         try
         {
-            const response = await fetch(`${Config.Url}/Projects/${id}/Profiles`);
+            const response = await fetch(`${Config.Url}/Projects/${id}/Indexes/${indexId}`);
 
             if (response.status === 200)
             {

@@ -2,7 +2,9 @@ import { connect } from "react-redux";
 
 import AlertList from "../Components/Alert/AlertList";
 
-const mapStateToProps = (state: any) => ({
+import IRootState from "../Interfaces/IRootState";
+
+const mapStateToProps = (state: IRootState) => ({
     Alerts: state.Alerts
 })
 

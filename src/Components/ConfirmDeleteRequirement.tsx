@@ -9,7 +9,7 @@ import ETypeColor from "../Constants/Enumerations/ETypeColor";
 
 interface IConfirmDeleteRequirement
 {
-    Id: number;
+    Id: number | null;
     RemoveRequirement: (id: number) => void;
 }
 
@@ -22,7 +22,7 @@ const ConfirmDeleteRequirement = ({ Id, RemoveRequirement }: IConfirmDeleteRequi
                     <Button Type={ETypeColor.SECONDARY} Rounde="3px" ReadOnly={false} TypeButton="button">Close</Button>
                     <strong data-close={false}>Delete requirement?</strong>
                     <Button Type={ETypeColor.PRIMARY} Rounde="3px" ReadOnly={false} TypeButton="button"
-                        onClick={(): void => RemoveRequirement(Id)}>Delete</Button>
+                        onClick={(): void => RemoveRequirement(Id || 0)}>Delete</Button>
                 </ModalHeader>
             </Modal>
         </Form>

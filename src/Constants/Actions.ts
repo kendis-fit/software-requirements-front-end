@@ -12,6 +12,7 @@ export const UPDATE_PROFILE: string = "UPDATE_PROFILE";
 
 // Requirement
 export const SET_REQUIREMENT: string = "SET_REQUIREMENT";
+export const SET_INDEX: string = "SET_INDEX";
 
 // Search Requirement
 export const SEARCH_REQUIREMENT: string = "SEARCH_REQUIREMENT";

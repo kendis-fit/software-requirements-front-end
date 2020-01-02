@@ -5,10 +5,12 @@ import { Modal, ModalHeader, ModalBody } from "./Styles/Modal";
 import { Form } from "./Styles/Form";
 
 import ProjectApi from "../Api/ProjectApi";
+import RequirementApi from "../Api/RequirementApi";
+import IRequirementSelect from "../Interfaces/IRequirementSelect";
 
 interface IShowResult
 {
-    Requirement?: number;
+    Requirement?: IRequirementSelect;
 }
 
 const ShowResult = ({ Requirement }: IShowResult) => {
@@ -16,12 +18,16 @@ const ShowResult = ({ Requirement }: IShowResult) => {
     const [result, setResult] = useState<string | null>(null);
 
     useEffect(() => {
+        
+        if (Requirement && Requirement.Index && Requirement.Id) {
 
-        if (Requirement) {
+            const { Id, Index } = Requirement;
 
             (async () => {
 
-                const json: string = await ProjectApi.GetResult(Requirement);
+                const json: string = Requirement.IsProject ? 
+                    await ProjectApi.GetResult(Id, Index) :
+                    await RequirementApi.GetResult(Id, Index)
                 setResult(json);
             })();
         }

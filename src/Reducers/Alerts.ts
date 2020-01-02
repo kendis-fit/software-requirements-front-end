@@ -2,13 +2,13 @@ import IAlert from "../Interfaces/IAlert";
 import Action from "../Constants/Types/ActionReducer";
 import { ADD_ALERT, REMOVE_ALERT } from "../Constants/Actions";
 
-const initialState: Array<IAlert> = new Array<IAlert>(); 
+const initialState: IAlert[] = []; 
 
 type ActionType = 
     | Action<'ADD_NOTIFY', { value: IAlert }>
     | Action<'REMOVE_NOTIFY', { value: number }>
 
-const Alerts = (state: Array<IAlert> = initialState, action: ActionType) => {
+const Alerts = (state: IAlert[] = initialState, action: ActionType) => {
     switch (action.type)
     {
         case ADD_ALERT:

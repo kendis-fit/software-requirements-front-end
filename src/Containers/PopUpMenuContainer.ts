@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 
+import IRootState from "../Interfaces/IRootState";
+
 import PopUpMenu from "../Components/PopUpMenu";
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IRootState) => ({
     Menu: state.Menu
 })
 

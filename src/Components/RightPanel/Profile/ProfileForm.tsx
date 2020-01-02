@@ -12,17 +12,19 @@ import ETypeColor from "../../../Constants/Enumerations/ETypeColor";
 import EDirection from "../../../Constants/Enumerations/EDirection";
 import IChangeValue from "../../../Interfaces/Profile/IChangeValue";
 import ICoefficient from "../../../Interfaces/Profile/ICoefficient";
+import IRequirementSelect from "../../../Interfaces/IRequirementSelect";
 
 interface IProfileForm
 {
-    Id: number;
+    Requirement: IRequirementSelect;
     Indexes: IIndex[] | null;
     LoadProfile: boolean;
     UpdateProfile: (changeValue: IChangeValue) => void;
     SubmitUpdateProfile: (id: number, profile: string) => void;
+    ShowResult: (id: string) => void;
 }
 
-const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile }: IProfileForm) => {
+const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile, ShowResult }: IProfileForm) => {
     if (LoadProfile)
         return <span>Loading...</span>
     if (Indexes === null || Indexes.length === 0)
@@ -40,9 +42,9 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
     const SaveProfile = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const isFormValid = Indexes.every(i => isCoeffsLessEqual1(i.Coefficients));
-        if (isFormValid) SubmitUpdateProfile(Id, JSON.stringify(Indexes));
+        if (isFormValid && Requirement.Id) SubmitUpdateProfile(Requirement.Id, JSON.stringify(Indexes));
     }
-    console.log(Indexes);
+
     return(
         <form onSubmit={SaveProfile}>
             <div style={{ overflowX: "scroll", overflowY: "scroll", width: "100%", height: "850px" }}>
@@ -50,6 +52,7 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
                             <FlexBlock Direction={EDirection.ROW}>
+                                <button data-close={false} type="button" onClick={() => ShowResult(I.NameIndex)}>Calculate</button>
                                 <TextSpace title={I.Name}>{I.NameIndex}</TextSpace>
                                 {
                                     I.Coefficients.map((c, i) => { 
@@ -94,7 +97,6 @@ const ProfileForm = ({ Id, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProf
                 }
             </div>
             <ButtonsBlock>
-                <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.SECONDARY} TypeButton="button" Rounde="3px">Visualisation</Button>
                 <Button style={{ margin: "5px" }} ReadOnly={false} Type={ETypeColor.PRIMARY} TypeButton="submit" Rounde="3px">Save</Button>
             </ButtonsBlock>
         </form>

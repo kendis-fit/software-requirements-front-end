@@ -6,10 +6,11 @@ import { BlockShowHide } from "../../Styles/Block";
 import IMenu from "../../../Interfaces/IMenu";
 import EMenu from "../../../Constants/Enumerations/EMenu";
 import IRequirementView from "../../../Interfaces/IRequirementView";
+import IRequirementSelect from "../../../Interfaces/IRequirementSelect";
 
 interface IRequirementItem extends IRequirementView
 {
-    SetRequirement: (id: number) => void;
+    SetRequirement: (requirement: IRequirementSelect) => void;
     SetProfile: (id: number) => void;
     ShowMenu: (menu: IMenu) => void;
 }
@@ -18,13 +19,13 @@ const RequirementItem = ({ Id, ParentId, Name, Level, Write, SetRequirement, Set
     return(
         <TreeNode data-id={Id} data-parent-id={ParentId} Level={Level} Write={Write} onClick={(e: any) => {
             if (!e.target.dataset.action) {
-                SetRequirement(Number(e.currentTarget.dataset.id));
+                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null });
                 SetProfile(e.currentTarget.dataset.id);
             }
         }}
         onContextMenu={(e: any) => {
             if (!e.target.dataset.action) {
-                SetRequirement(Number(e.currentTarget.dataset.id));
+                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null });
                 ShowMenu({ Name: EMenu.REQUIREMENT_MENU, X: e.pageX, Y: e.pageY });
             }
         }}>

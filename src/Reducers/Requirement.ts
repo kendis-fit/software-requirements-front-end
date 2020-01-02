@@ -1,15 +1,25 @@
-import { SET_REQUIREMENT } from "../Constants/Actions";
+import { SET_REQUIREMENT, SET_INDEX } from "../Constants/Actions";
 
+import IRequirementSelect from "../Interfaces/IRequirementSelect";
 import Action from "../Constants/Types/ActionReducer";
 
-type ActionType = 
-    | Action<'SET_REQUIREMENT', { value: number | null }>
+const initialState: IRequirementSelect = {
+    Id: null,
+    IsProject: null,
+    Index: null
+};
 
-const Requirement = (state: number | null = null, action: ActionType) => {
+type ActionType = 
+    | Action<'SET_REQUIREMENT', { value: IRequirementSelect }>
+    | Action<'SET_INDEX', { value: string }>
+
+const Requirement = (state: IRequirementSelect = initialState, action: ActionType) => {
     switch (action.type)
     {
         case SET_REQUIREMENT:
-            return action.value;
+            return action.value as IRequirementSelect;
+        case SET_INDEX:
+            return {...state, Index: action.value as string}
         default:
             return state;
     }

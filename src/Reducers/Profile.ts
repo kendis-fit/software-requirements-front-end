@@ -4,10 +4,10 @@ import IChangeValue from "../Interfaces/Profile/IChangeValue";
 
 import { SET_PROFILE, UPDATE_PROFILE } from "../Constants/Actions";
 
-const initialState = new Array<IProfile>();
+const initialState: IProfile[] = [];
 
 type ActionType = 
-    | Action<'SET_PROFILE', { value: Array<IProfile> | null }>
+    | Action<'SET_PROFILE', { value: IProfile[] | null }>
     | Action<'UPDATE_PROFILE', { value: IChangeValue }>
 
 const isNumber = (number: any): boolean => !Number.isNaN(number - parseFloat(number))
