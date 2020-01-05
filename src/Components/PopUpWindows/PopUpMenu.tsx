@@ -1,13 +1,14 @@
 import React from "react";
 
-import ProjectMenuContainer from "../Containers/ProjectMenuContainer";
-import RequirementMenuContainer from "../Containers/RequirementMenuContainer";
-import CreateRequirementContainer from "../Containers/CreateRequirementContainer";
-import ConfirmDeleteRequirementContainer from "../Containers/ConfirmDeleteRequirementContainer";
-import ShowResultContainer from "../Containers/ShowResultContainer";
+import ShowResultContainer from "../../Containers/ShowResultContainer";
+import ShowDiagramContainer from "../../Containers/ShowDiagramContainer";
+import ProjectMenuContainer from "../../Containers/ProjectMenuContainer";
+import RequirementMenuContainer from "../../Containers/RequirementMenuContainer";
+import CreateRequirementContainer from "../../Containers/CreateRequirementContainer";
+import ConfirmDeleteRequirementContainer from "../../Containers/ConfirmDeleteRequirementContainer";
 
-import IMenu from "../Interfaces/IMenu";
-import EMenu from "../Constants/Enumerations/EMenu";
+import IMenu from "../../Interfaces/IMenu";
+import EMenu from "../../Constants/Enumerations/EMenu";
 
 interface IPopUpMenu
 {
@@ -28,6 +29,8 @@ const PopUpMenu = ({ Menu }: IPopUpMenu) => {
             return <ConfirmDeleteRequirementContainer />
         case EMenu.SHOW_RESULT:
             return <ShowResultContainer />
+        case EMenu.SHOW_DIAGRAM:
+            return <ShowDiagramContainer />
         default:
             return <></>
     }

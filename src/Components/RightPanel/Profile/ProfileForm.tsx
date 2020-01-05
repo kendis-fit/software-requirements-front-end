@@ -22,9 +22,10 @@ interface IProfileForm
     UpdateProfile: (changeValue: IChangeValue) => void;
     SubmitUpdateProfile: (id: number, profile: string) => void;
     ShowResult: (id: string) => void;
+    ShowDiagram: (id: string) => void;
 }
 
-const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile, ShowResult }: IProfileForm) => {
+const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile, ShowResult, ShowDiagram }: IProfileForm) => {
     if (LoadProfile)
         return <span>Loading...</span>
     if (Indexes === null || Indexes.length === 0)
@@ -52,6 +53,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
                             <FlexBlock Direction={EDirection.ROW}>
+                                <button data-close={false} type="button" onClick={() => ShowDiagram(I.NameIndex)}>Visualisation</button>
                                 <button data-close={false} type="button" onClick={() => ShowResult(I.NameIndex)}>Calculate</button>
                                 <TextSpace title={I.Name}>{I.NameIndex}</TextSpace>
                                 {

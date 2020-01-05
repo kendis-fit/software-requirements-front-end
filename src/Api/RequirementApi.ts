@@ -19,12 +19,12 @@ export default class RequirementApi
             {
                 dispatch(LoadRequirements(true));
                 
-                const response = await fetch(`${Config.Url}/Requirements/${parentId}`, {
+                const response = await fetch(`${Config.Url}/Requirements`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json; charset=utf-8"
                         },
-                        body: JSON.stringify({ name: name })
+                        body: JSON.stringify({ name: name, parentId: parentId })
                     });
                 
                 if (response.status === 201)
@@ -89,7 +89,29 @@ export default class RequirementApi
             if (response.status === 200)
             {
                 const result = await response.text();
+                return result;
+            }
+            else
+            {
+                throw new Error("Requirement failed to calculate");
+            }
+        }
+        catch (message)
+        {
+            alert(message);
+        }
+        return "";
+    }
 
+    public static async GetDiagram(id: number, indexId: string)
+    {
+        try
+        {
+            const response = await fetch(`${Config.Url}/Requirements/${id}/Diagrams/${indexId}`);
+
+            if (response.status === 200)
+            {
+                const result = await response.json();
                 return result;
             }
             else

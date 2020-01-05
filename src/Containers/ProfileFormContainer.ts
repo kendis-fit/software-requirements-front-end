@@ -22,9 +22,12 @@ const mapDispatchToProps = (dispatch: any) => ({
     UpdateProfile: (changeValue: IChangeValue) => dispatch(UpdateProfile(changeValue)),
     SubmitUpdateProfile: (id: number, profile: string) => dispatch(ProfileApi.UpdateProfile(id, profile)),
     ShowResult: (id: string) => {
-        console.log("index", id);
         dispatch(SetIndex(id));
-        dispatch(ShowMenu({ Name: EMenu.SHOW_RESULT }))
+        dispatch(ShowMenu({ Name: EMenu.SHOW_RESULT }));
+    },
+    ShowDiagram: (id: string) => {
+        dispatch(SetIndex(id));
+        dispatch(ShowMenu({ Name: EMenu.SHOW_DIAGRAM }));
     }
 })
 

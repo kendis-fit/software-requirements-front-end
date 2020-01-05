@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Form } from "./Styles/Form";
-import { Button } from "./Styles/Button";
-import { DarkBackgroundBlock } from "./Styles/Block";
-import { Modal, ModalHeader } from "./Styles/Modal";
+import { Form } from "../Styles/Form";
+import { Button } from "../Styles/Button";
+import { DarkBackgroundBlock } from "../Styles/Block";
+import { Modal, ModalHeader } from "../Styles/Modal";
 
-import ETypeColor from "../Constants/Enumerations/ETypeColor";
+import ETypeColor from "../../Constants/Enumerations/ETypeColor";
 
 interface IConfirmDeleteRequirement
 {

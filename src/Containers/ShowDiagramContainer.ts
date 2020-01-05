@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import ShowResult from "../Components/PopUpWindows/ShowResult";
+import ShowDiagram from "../Components/PopUpWindows/ShowDiagram";
 
 import IRootState from "../Interfaces/IRootState";
 
@@ -8,4 +8,4 @@ const mapStateToProps = (state: IRootState) => ({
 	Requirement: state.Requirement
 });
 
-export default connect(mapStateToProps, null)(ShowResult);
+export default connect(mapStateToProps, null)(ShowDiagram);

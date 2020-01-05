@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import ConfirmDeleteRequirement from "../Components/ConfirmDeleteRequirement";
+import ConfirmDeleteRequirement from "../Components/PopUpWindows/ConfirmDeleteRequirement";
 
 import IRootState from "../Interfaces/IRootState";
 

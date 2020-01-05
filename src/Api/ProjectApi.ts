@@ -104,6 +104,29 @@ export default class ProjectApi
         {
             alert(message);
         }
+        throw new Error("lol");
+    }
+
+    public static async GetDiagram(id: number, indexId: string)
+    {
+        try
+        {
+            const response = await fetch(`${Config.Url}/Projects/${id}/Diagrams/${indexId}`);
+
+            if (response.status === 200)
+            {
+                const result = await response.json();
+                return result;
+            }
+            else
+            {
+                throw new Error("Project failed to calculate");
+            }
+        }
+        catch (message)
+        {
+            alert(message);
+        }
         return "";
     }
 

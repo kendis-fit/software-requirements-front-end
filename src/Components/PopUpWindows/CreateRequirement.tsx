@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { Form } from "./Styles/Form";
-import { Input } from "./Styles/Input";
-import { Button } from "./Styles/Button";
-import { Wrapper } from "./Styles/Wrapper";
-import { DarkBackgroundBlock, Block } from "./Styles/Block";
-import { Modal, ModalHeader, ModalBody } from "./Styles/Modal";
+import { Form } from "../Styles/Form";
+import { Input } from "../Styles/Input";
+import { Button } from "../Styles/Button";
+import { Wrapper } from "../Styles/Wrapper";
+import { DarkBackgroundBlock, Block } from "../Styles/Block";
+import { Modal, ModalHeader, ModalBody } from "../Styles/Modal";
 
-import ETypeColor from "../Constants/Enumerations/ETypeColor";
+import ETypeColor from "../../Constants/Enumerations/ETypeColor";
 
 interface ICreateRequirement
 {

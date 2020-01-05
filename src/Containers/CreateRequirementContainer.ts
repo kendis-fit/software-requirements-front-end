@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import CreateRequirement from "../Components/CreateRequirement";
+import CreateRequirement from "../Components/PopUpWindows/CreateRequirement";
 
 import IRootState from "../Interfaces/IRootState";
 
@@ -8,7 +8,7 @@ import ProjectApi from "../Api/ProjectApi";
 import RequirementApi from "../Api/RequirementApi";
 
 const mapStateToProps = (state: IRootState) => ({
-    ParentId: state.Requirement.Id
+    ParentId: state.Requirement !== null ? state.Requirement.Id : null
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

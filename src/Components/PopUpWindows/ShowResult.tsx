@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { DarkBackgroundBlock } from "./Styles/Block";
-import { Modal, ModalHeader, ModalBody } from "./Styles/Modal";
-import { Form } from "./Styles/Form";
+import { Form } from "../Styles/Form";
+import { DarkBackgroundBlock } from "../Styles/Block";
+import { Modal, ModalHeader, ModalBody } from "../Styles/Modal";
 
-import ProjectApi from "../Api/ProjectApi";
-import RequirementApi from "../Api/RequirementApi";
-import IRequirementSelect from "../Interfaces/IRequirementSelect";
+import ProjectApi from "../../Api/ProjectApi";
+import RequirementApi from "../../Api/RequirementApi";
+import IRequirementSelect from "../../Interfaces/IRequirementSelect";
 
 interface IShowResult
 {
@@ -16,6 +16,7 @@ interface IShowResult
 const ShowResult = ({ Requirement }: IShowResult) => {
     
     const [result, setResult] = useState<string | null>(null);
+    const [isLoad, setIsLoad] = useState<boolean>(true);
 
     useEffect(() => {
         
@@ -29,6 +30,7 @@ const ShowResult = ({ Requirement }: IShowResult) => {
                     await ProjectApi.GetResult(Id, Index) :
                     await RequirementApi.GetResult(Id, Index)
                 setResult(json);
+                setIsLoad(false);
             })();
         }
     }, [Requirement]);
@@ -39,7 +41,11 @@ const ShowResult = ({ Requirement }: IShowResult) => {
             <DarkBackgroundBlock></DarkBackgroundBlock>
             <Modal data-close={false}>
                 <ModalHeader data-close={false} Height="50px">Result</ModalHeader>
-                <ModalBody data-close={false}>{result}</ModalBody>
+                <ModalBody data-close={false}>
+                    {
+                        isLoad ? "Loading..." : result
+                    }
+                </ModalBody>
             </Modal>
         </Form>
     );
