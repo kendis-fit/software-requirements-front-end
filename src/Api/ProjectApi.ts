@@ -73,8 +73,20 @@ export default class ProjectApi
             }
             catch (message)
             {
-                console.log("lol chto", message);
-                delete localStorage["projectId"];
+                const projectsIdString = localStorage["projectsId"];
+                if (projectsIdString)
+                {
+                    let projectsId: number[] = JSON.parse(projectsIdString);
+                    if (projectsId.length === 0)
+                    {
+                        delete localStorage["projectsId"];
+                    }
+                    else
+                    {
+                        projectsId = projectsId.filter(projectId => projectId !== id);
+                        localStorage["projectsId"] = JSON.stringify(projectsId);
+                    }
+                }
             }
             finally
             {

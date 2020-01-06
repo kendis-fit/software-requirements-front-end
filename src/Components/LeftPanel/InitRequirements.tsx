@@ -4,16 +4,16 @@ import RequirementListContainer from "../../Containers/RequirementListContainer"
 
 interface IInitRequirements
 {
-    InitRequirements: (id: number) => any; 
+    InitRequirements: (id: number[]) => any; 
 }
 
 const InitRequirements = ({ InitRequirements }: IInitRequirements) => {
     
-    const projectId = Number(localStorage["projectId"]);
+    const projects = localStorage["projectsId"];
 
-    if (projectId) {
+    if (projects) {
 
-        InitRequirements(projectId);
+        InitRequirements(JSON.parse(projects));
     }
     
     return(

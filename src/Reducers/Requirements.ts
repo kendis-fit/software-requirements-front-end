@@ -22,7 +22,19 @@ const Requirements = (state: IRequirement[] = initialState, action: ActionType) 
             
             if (value.ParentId === null) // value is project and isn't requirement
             {
-                localStorage["projectId"] = value.Requirement.id;
+                if (localStorage["projectsId"])
+                {
+                    const projects: number[] = JSON.parse(localStorage["projectsId"]);
+                    if (projects.every(id => id !== value.Requirement.id))
+                    {
+                        projects.push(value.Requirement.id);
+                        localStorage["projectsId"] = JSON.stringify(projects);
+                    }
+                }
+                else
+                {
+                    localStorage["projectsId"] = JSON.stringify([ value.Requirement.id ]);
+                }
                 state.push(value.Requirement);
             }
             else
