@@ -68,23 +68,30 @@ export default class ProjectApi
                 }
                 else
                 {
-                    throw new Error();
+                    throw new Error("Server error");
                 }
             }
-            catch (message)
+            catch (error)
             {
-                const projectsIdString = localStorage["projectsId"];
-                if (projectsIdString)
+                if (error.message.includes("NetworkError"))
                 {
-                    let projectsId: number[] = JSON.parse(projectsIdString);
-                    if (projectsId.length === 0)
+                    dispatch(AddAlert(this.createAlert("Error", error.message, ETypeColor.DANGER)));
+                }
+                else
+                {
+                    const projectsIdString = localStorage["projectsId"];
+                    if (projectsIdString)
                     {
-                        delete localStorage["projectsId"];
-                    }
-                    else
-                    {
-                        projectsId = projectsId.filter(projectId => projectId !== id);
-                        localStorage["projectsId"] = JSON.stringify(projectsId);
+                        let projectsId: number[] = JSON.parse(projectsIdString);
+                        if (projectsId.length === 0)
+                        {
+                            delete localStorage["projectsId"];
+                        }
+                        else
+                        {
+                            projectsId = projectsId.filter(projectId => projectId !== id);
+                            localStorage["projectsId"] = JSON.stringify(projectsId);
+                        }
                     }
                 }
             }
