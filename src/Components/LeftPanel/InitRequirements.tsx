@@ -17,7 +17,7 @@ const InitRequirements = ({ InitRequirements }: IInitRequirements) => {
     }
     
     return(
-        <ul>
+        <ul style={{ overflow: "auto", height: "inherit" }}>
             <RequirementListContainer Level={1} />
         </ul>
     );

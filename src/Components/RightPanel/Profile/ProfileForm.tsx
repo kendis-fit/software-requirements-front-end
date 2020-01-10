@@ -41,8 +41,16 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
 
     const SaveProfile = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const isFormValid = Indexes.every(i => isCoeffsEqual1(i.Coefficients));
+        const indexesWithError = Indexes.filter(i => !isCoeffsEqual1(i.Coefficients));
+
+        const isFormValid = indexesWithError.length === 0;
         if (isFormValid && Requirement.Id) SubmitUpdateProfile(Requirement.Id, JSON.stringify(Indexes));
+        else
+        {
+            let indexesWithErrorMessage = "Save: failed\n";
+            indexesWithError.forEach(i => indexesWithErrorMessage += `Coefficients by index ${i.NameIndex} in total have to give equal 1\n`);
+            alert(indexesWithErrorMessage);
+        }
     }
 
     return(
@@ -90,7 +98,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                     })
                                 }
                                 <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsEqual1(I.Coefficients) ? "none" : "" } }>
-                                    Coefficients and metrics in total have to give less or equal 1
+                                    Coefficients in total have to give equal 1
                                 </div>
                             </FlexBlock>
                         </Wrapper>
