@@ -4,6 +4,6 @@ export default interface IRequirement
 {
     id: number;
     name: string;
-    requirements: Array<IRequirement>;
+    requirements: IRequirement[];
     write: ERequirementWrite;
 }

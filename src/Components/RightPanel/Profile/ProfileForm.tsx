@@ -13,6 +13,7 @@ import EDirection from "../../../Constants/Enumerations/EDirection";
 import IChangeValue from "../../../Interfaces/Profile/IChangeValue";
 import ICoefficient from "../../../Interfaces/Profile/ICoefficient";
 import IRequirementSelect from "../../../Interfaces/IRequirementSelect";
+import ERequirementWrite from "../../../Constants/Enumerations/ERequirementWrite";
 
 interface IProfileForm
 {
@@ -31,18 +32,16 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
     if (Indexes === null || Indexes.length === 0)
         return <IndexesEmpty Text={Indexes === null ? "Group doesn't have profile" : "Empty" } />
     
-    const isCoeffsLessEqual1 = (coeffs: ICoefficient[]): boolean => {
+    const isCoeffsEqual1 = (coeffs: ICoefficient[]): boolean => {
         if (coeffs.length === 0) return true;
         const values = coeffs.map(c => c.Value || 0);
-        const metrics = coeffs.map(c => c.Metric ? (c.Metric.Value || 0) : 0);
         const result = Number.parseFloat(values.reduce((a, b) => a + b).toFixed(1));
-        const resultMetrics = Number.parseFloat(metrics.reduce((a, b) => a + b).toFixed(1))
-        return Math.fround(result) <= 1 && Math.fround(resultMetrics) <= 1;
+        return result === 1;
     }
 
     const SaveProfile = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const isFormValid = Indexes.every(i => isCoeffsLessEqual1(i.Coefficients));
+        const isFormValid = Indexes.every(i => isCoeffsEqual1(i.Coefficients));
         if (isFormValid && Requirement.Id) SubmitUpdateProfile(Requirement.Id, JSON.stringify(Indexes));
     }
 
@@ -53,8 +52,8 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
                             <FlexBlock Direction={EDirection.ROW}>
-                                <button data-close={false} type="button" onClick={() => ShowDiagram(I.NameIndex)}>Visualisation</button>
-                                <button data-close={false} type="button" onClick={() => ShowResult(I.NameIndex)}>Calculate</button>
+                                <button data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>Visualisation</button>
+                                <button data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowResult(I.NameIndex)}>Calculate</button>
                                 <TextSpace title={I.Name}>{I.NameIndex}</TextSpace>
                                 {
                                     I.Coefficients.map((c, i) => { 
@@ -90,7 +89,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                     </Fragment>
                                     })
                                 }
-                                <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsLessEqual1(I.Coefficients) ? "none" : "" } }>
+                                <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsEqual1(I.Coefficients) ? "none" : "" } }>
                                     Coefficients and metrics in total have to give less or equal 1
                                 </div>
                             </FlexBlock>
