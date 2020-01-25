@@ -10,14 +10,15 @@ import IRequirementSelect from "../../../Interfaces/IRequirementSelect";
 
 interface IRequirementItem extends IRequirementView
 {
+    SelectedId: number | null;
     SetRequirement: (requirement: IRequirementSelect) => void;
     SetProfile: (id: number) => void;
     ShowMenu: (menu: IMenu) => void;
 }
 
-const RequirementItem = ({ Id, ParentId, Name, Level, Write, SetRequirement, SetProfile, ShowMenu }: IRequirementItem) => {
+const RequirementItem = ({ SelectedId, Id, ParentId, Name, Level, Write, SetRequirement, SetProfile, ShowMenu }: IRequirementItem) => {
     return(
-        <TreeNode data-id={Id} data-parent-id={ParentId} Level={Level} Write={Write} onClick={(e: any) => {
+        <TreeNode data-id={Id} Selected={SelectedId === Id} data-parent-id={ParentId} Level={Level} Write={Write} onClick={(e: any) => {
             if (!e.target.dataset.action) {
                 SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null, Write: Write });
                 SetProfile(e.currentTarget.dataset.id);
