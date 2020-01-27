@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 import Item from "./Item";
 import IndexesEmpty from "./IndexesEmpty";
-import { TextSpace } from "../../Styles/Text";
+import { TextSpace, TextIndex } from "../../Styles/Text";
 import { Wrapper } from "../../Styles/Wrapper";
 import { ButtonsBlock, FlexBlock } from "../../Styles/Block";
 import { Button, ButtonWithImage } from "../../Styles/Button";
@@ -63,13 +63,13 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
                             <FlexBlock Direction={EDirection.ROW}>
+                                <TextIndex title={I.Name}>{I.NameIndex}:</TextIndex>
                                 <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowResult(I.NameIndex)}>
                                     <img data-close={false} src={calculation} width={50} height={50} alt="calculation" />
                                 </ButtonWithImage>
                                 <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>
                                     <img data-close={false} src={visualisation} width={50} height={50} alt="visualisation" />
                                 </ButtonWithImage>
-                                <TextSpace title={I.Name}>{I.NameIndex}</TextSpace>
                                 {
                                     I.Coefficients.map((c, i) => { 
 

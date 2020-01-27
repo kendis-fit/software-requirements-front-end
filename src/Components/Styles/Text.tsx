@@ -15,3 +15,7 @@ export const Text = styled.span<IFontSize>`
 export const TextSpace = styled.span`
     margin-right: 5px;
 `;
+
+export const TextIndex = styled.span`
+    font-size: 40px;
+`;

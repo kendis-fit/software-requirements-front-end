@@ -87,13 +87,13 @@ const ShowDiagram = ({ Requirement }: IShowDiagram) => {
     return (
         <Form> 
             <DarkBackgroundBlock></DarkBackgroundBlock>
-            <Modal data-close={false} style={{ height: "300px", width: "600px" }}>
+            <Modal data-close={false} style={{ height: "90vh", width: "90vw", top: "0" }}>
                 <ModalHeader data-close={false} Height="50px">Chart</ModalHeader>
                 <ModalBody data-close={false}>
                     {
                         isLoad ? "Loading..." : 
                             <>
-                                <div data-close={false} style={{ display: "flex", flexDirection: "row" }}>
+                                <div data-close={false} style={{ display: "flex", padding: "10px 0 10px 0", flexDirection: "row", justifyContent: "space-around" }}>
                                     <input style={{ width: "184px" }} data-close={false} value={dangerArea} onChange={e => setDangerArea(e.target.value)} placeholder="Max danger range" />
                                     <input style={{ width: "184px" }} data-close={false} value={warningArea} onChange={e => setWarningArea(e.target.value)} placeholder="Max warning range" />
                                     <input style={{ width: "184px" }} data-close={false} value={successArea} onChange={e => setSuccessArea(e.target.value)} placeholder="Max success range" />
