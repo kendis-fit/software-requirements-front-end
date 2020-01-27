@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import Colors from "../../../Constants/Colors";
+
 interface ICoefficientItem
 {
     UpdateProfile(value: string): void;
@@ -20,7 +22,7 @@ const Item = ({ UpdateProfile, Value, ReadOnly }: ICoefficientItem) => {
     }, [Value]);
     
     return(
-        <input pattern="[0-9]+(\.[0-9]+)?" style={{ width: "75px", height: "20px" }} onChange={updateProfile}
+        <input pattern="[0-9]+(\.[0-9]+)?" style={{ width: "75px", height: "20px", border: `2px solid ${Colors.LightBlueDisabled}` }} onChange={updateProfile}
             value={value || ""} readOnly={ReadOnly} required={true} />
     );
 }

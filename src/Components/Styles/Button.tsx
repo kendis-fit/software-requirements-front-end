@@ -47,3 +47,9 @@ export const Button = styled.button.attrs<IButton>(props => ({ disabled: props.R
     ${props => props.ReadOnly && ""};
     ${props => props.TypeButton && ""};
 `;
+
+export const ButtonWithImage = styled.button`
+    border: 0;
+    cursor: pointer;
+    background: white;
+`;

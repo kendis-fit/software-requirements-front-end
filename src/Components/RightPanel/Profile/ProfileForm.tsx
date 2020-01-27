@@ -2,10 +2,10 @@ import React, { Fragment } from "react";
 
 import Item from "./Item";
 import IndexesEmpty from "./IndexesEmpty";
-import { Button } from "../../Styles/Button";
 import { TextSpace } from "../../Styles/Text";
 import { Wrapper } from "../../Styles/Wrapper";
 import { ButtonsBlock, FlexBlock } from "../../Styles/Block";
+import { Button, ButtonWithImage } from "../../Styles/Button";
 
 import IIndex from "../../../Interfaces/Profile/IIndex";
 import ETypeColor from "../../../Constants/Enumerations/ETypeColor";
@@ -14,6 +14,9 @@ import IChangeValue from "../../../Interfaces/Profile/IChangeValue";
 import ICoefficient from "../../../Interfaces/Profile/ICoefficient";
 import IRequirementSelect from "../../../Interfaces/IRequirementSelect";
 import ERequirementWrite from "../../../Constants/Enumerations/ERequirementWrite";
+
+import calculation from "../../../Images/Calculation.gif";
+import visualisation from "../../../Images/Visualisation.gif";
 
 interface IProfileForm
 {
@@ -60,8 +63,12 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
                             <FlexBlock Direction={EDirection.ROW}>
-                                <button data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>Visualisation</button>
-                                <button data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowResult(I.NameIndex)}>Calculate</button>
+                                <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowResult(I.NameIndex)}>
+                                    <img data-close={false} src={calculation} width={50} height={50} alt="calculation" />
+                                </ButtonWithImage>
+                                <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>
+                                    <img data-close={false} src={visualisation} width={50} height={50} alt="visualisation" />
+                                </ButtonWithImage>
                                 <TextSpace title={I.Name}>{I.NameIndex}</TextSpace>
                                 {
                                     I.Coefficients.map((c, i) => { 
