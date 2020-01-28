@@ -70,40 +70,52 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                 <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>
                                     <img data-close={false} src={visualisation} width={50} height={50} alt="visualisation" />
                                 </ButtonWithImage>
-                                {
-                                    I.Coefficients.map((c, i) => { 
-
-                                    return <Fragment key={i}>
-                                        <TextSpace>{c.Name}</TextSpace>
-                                        <Item UpdateProfile={(value) => UpdateProfile({ NameCoefficient: c.Name, NameIndex: I.NameIndex, Value: value })}
-                                            ReadOnly={false} Value={c.Value} />
-                                        {
-                                            c.Metric && 
-                                            <>
-                                                <TextSpace title={c.Metric.NameMetric}>{c.Metric.Name}</TextSpace>
-                                                <Item UpdateProfile={(value) => 
-                                                UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex, Value: value })}
-                                                ReadOnly={c.Metric.Primitives ? true : false} Value={c.Metric.Value} />
+                                <FlexBlock Direction={EDirection.COLUMN}>
+                                    <FlexBlock Direction={EDirection.ROW}>
+                                    {
+                                        I.Coefficients.map((c, i) => { 
+                                            
+                                            return <Fragment key={i}>
+                                            <TextSpace>{c.Name}</TextSpace>
+                                            <Item UpdateProfile={(value) => UpdateProfile({ NameCoefficient: c.Name, NameIndex: I.NameIndex, Value: value })}
+                                                ReadOnly={false} Value={c.Value} />
+                                        </Fragment>
+                                        })
+                                    }
+                                    </FlexBlock>
+                                    <FlexBlock Direction={EDirection.ROW} style={{ paddingTop: "5px" }}>
+                                    {
+                                        I.Coefficients.map((c, i) => {
+                                            return <Fragment key={i}>
                                                 {
-                                                    c.Metric.Primitives &&
+                                                    c.Metric && 
                                                     <>
-                                                    {
-                                                        c.Metric.Primitives.map((p, i) => 
-                                                            <Fragment key={i}>
-                                                                <TextSpace>{p.Name}</TextSpace>
-                                                                <Item UpdateProfile={(value) =>
-                                                                UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex,
-                                                                NamePrimitive: p.Name, Value: value })}
-                                                                ReadOnly={false} Value={p.Value} />
-                                                            </Fragment>)
-                                                    }
-                                                    </>
+                                                        <TextSpace title={c.Metric.NameMetric}>{c.Metric.Name}</TextSpace>
+                                                        <Item UpdateProfile={(value) => 
+                                                        UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex, Value: value })}
+                                                        ReadOnly={c.Metric.Primitives ? true : false} Value={c.Metric.Value} />
+                                                        {
+                                                            c.Metric.Primitives &&
+                                                            <>
+                                                            {
+                                                                c.Metric.Primitives.map((p, i) => 
+                                                                <Fragment key={i}>
+                                                                        <TextSpace>{p.Name}</TextSpace>
+                                                                        <Item UpdateProfile={(value) =>
+                                                                        UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex,
+                                                                            NamePrimitive: p.Name, Value: value })}
+                                                                            ReadOnly={false} Value={p.Value} />
+                                                                    </Fragment>)
+                                                            }
+                                                            </>
+                                                        }
+                                                    </>          
                                                 }
-                                            </>
-                                        }
-                                    </Fragment>
-                                    })
-                                }
+                                            </Fragment>
+                                        })
+                                    }
+                                    </FlexBlock>
+                                </FlexBlock>
                                 <div style={ { color: "red", paddingLeft: "10px", display: isCoeffsEqual1(I.Coefficients) ? "none" : "" } }>
                                     Coefficients in total have to give equal 1
                                 </div>
