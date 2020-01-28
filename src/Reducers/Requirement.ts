@@ -5,6 +5,7 @@ import Action from "../Constants/Types/ActionReducer";
 
 const initialState: IRequirementSelect = {
     Id: null,
+    Name: null,
     IsProject: null,
     Index: null,
     Write: null

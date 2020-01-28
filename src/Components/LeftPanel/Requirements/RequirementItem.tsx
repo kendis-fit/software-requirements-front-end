@@ -20,13 +20,13 @@ const RequirementItem = ({ SelectedId, Id, ParentId, Name, Level, Write, SetRequ
     return(
         <TreeNode data-id={Id} Selected={SelectedId === Id} data-parent-id={ParentId} Level={Level} Write={Write} onClick={(e: any) => {
             if (!e.target.dataset.action) {
-                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null, Write: Write });
+                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null, Write, Name });
                 SetProfile(e.currentTarget.dataset.id);
             }
         }}
         onContextMenu={(e: any) => {
             if (!e.target.dataset.action) {
-                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null, Write: Write });
+                SetRequirement({ Id: Number(e.currentTarget.dataset.id), IsProject: ParentId === undefined, Index: null, Write, Name });
                 ShowMenu({ Name: EMenu.REQUIREMENT_MENU, X: e.pageX, Y: e.pageY });
             }
         }}>

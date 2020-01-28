@@ -58,7 +58,8 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
 
     return(
         <form onSubmit={SaveProfile}>
-            <div style={{ overflowX: "scroll", overflowY: "scroll", width: "100%", height: "850px" }}>
+            <div style={{ overflowX: "scroll", overflowY: "scroll", width: "100%", height: "calc(100vh - 25px - 50px)" }}>
+                <h1 style={{ padding: "10px", fontWeight: "normal" }}>Name Requirement: <strong>{Requirement.Name}</strong></h1>
                 {
                     Indexes.map((I, i) =>
                         <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
