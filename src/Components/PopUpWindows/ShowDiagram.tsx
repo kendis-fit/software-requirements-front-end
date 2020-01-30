@@ -34,28 +34,34 @@ const ShowDiagram = ({ Requirement }: IShowDiagram) => {
 
             if (!ctx) return;
 
+            const labels = dataset.map(d => d.name);
             const values = dataset.map(d => d.value);
+            if (values.length === 2)
+            {
+                labels.push("");
+                values.push(0);
+            }
 
             const dangerValue = Number.parseFloat(dangerArea === undefined ? "" : dangerArea);
             const warningValue = Number.parseFloat(warningArea === undefined ? "" : warningArea);
             const successValue = Number.parseFloat(successArea === undefined ? "" : successArea);
 
             const marksData = {
-                labels: dataset.map(d => d.name),
+                labels: labels,
                 datasets: [{
-                    label: "Requirement: test",
+                    label: `Requirement: ${Requirement ? Requirement.Name : ""}`,
                     backgroundColor: "rgb(35, 148, 209, 0.6)",
-                    data: values
+                    data: values,
                     }, {
-                    label: "Danger",
+                    label: "No corresponds",
                     backgroundColor: "rgba(255, 0, 0, 0.6)",
                     data: values.map(() => dangerValue)
                     }, {
-                    label: "Warning",
+                    label: "Partially corresponds",
                     backgroundColor: "rgba(255, 217, 101, 0.6)",
                     data: values.map(() => warningValue)
                     }, {
-                    label: "Success",
+                    label: "Corresponds",
                     backgroundColor: "rgba(0, 176, 80, 0.6)",
                     data: values.map(() => successValue)
                 }]
@@ -63,7 +69,14 @@ const ShowDiagram = ({ Requirement }: IShowDiagram) => {
                
             new Chart(ctx, {
                 type: "radar",
-                data: marksData
+                data: marksData,
+                options: {
+                    scales: {
+                        scaleLabel: {
+                            fontSize: 16
+                        }
+                    }
+                }
             });
         }
         
@@ -94,9 +107,9 @@ const ShowDiagram = ({ Requirement }: IShowDiagram) => {
                         isLoad ? "Loading..." : 
                             <>
                                 <div data-close={false} style={{ display: "flex", padding: "10px 0 10px 0", flexDirection: "row", justifyContent: "space-around" }}>
-                                    <input style={{ width: "184px" }} data-close={false} value={dangerArea} onChange={e => setDangerArea(e.target.value)} placeholder="Max danger range" />
-                                    <input style={{ width: "184px" }} data-close={false} value={warningArea} onChange={e => setWarningArea(e.target.value)} placeholder="Max warning range" />
-                                    <input style={{ width: "184px" }} data-close={false} value={successArea} onChange={e => setSuccessArea(e.target.value)} placeholder="Max success range" />
+                                    <input style={{ width: "184px" }} data-close={false} value={dangerArea} onChange={e => setDangerArea(e.target.value)} placeholder="Max no corresponds range" />
+                                    <input style={{ width: "184px" }} data-close={false} value={warningArea} onChange={e => setWarningArea(e.target.value)} placeholder="Max partially corresponds range" />
+                                    <input style={{ width: "184px" }} data-close={false} value={successArea} onChange={e => setSuccessArea(e.target.value)} placeholder="Max corresponds range" />
                                 </div>
                                 <canvas data-close={false} style={{ background: "white" }} ref={canvas}></canvas>
                             </>
