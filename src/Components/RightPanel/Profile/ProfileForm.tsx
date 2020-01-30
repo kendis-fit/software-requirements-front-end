@@ -62,7 +62,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                 <h1 style={{ padding: "10px", fontWeight: "normal" }}>Name Requirement: <strong>{Requirement.Name}</strong></h1>
                 {
                     Indexes.map((I, i) =>
-                        <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px">
+                        <Wrapper key={i} Top="20px" Left="20px" Right="20px" Bottom="20px" style={{ borderBottom: "1px dashed black", paddingBottom: "10px" }}>
                             <FlexBlock Direction={EDirection.ROW}>
                                 <TextIndex title={I.Name}>{I.NameIndex}:</TextIndex>
                                 <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowResult(I.NameIndex)}>

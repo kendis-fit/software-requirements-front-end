@@ -22,7 +22,7 @@ const Item = ({ UpdateProfile, Value, ReadOnly }: ICoefficientItem) => {
     }, [Value]);
     
     return(
-        <input pattern="[0-9]+(\.[0-9]+)?" style={{ width: "75px", height: "20px", border: `2px solid ${Colors.LightBlueDisabled}` }} onChange={updateProfile}
+        <input pattern="[0-9]+(\.[0-9]+)?" style={{ width: "75px", height: "20px", border: `2px solid ${Colors.LightBlueDisabled}`, background: `${ReadOnly ? "rgb(164, 164, 164)" : ""}` }} onChange={updateProfile}
             value={value || ""} readOnly={ReadOnly} required={true} />
     );
 }
