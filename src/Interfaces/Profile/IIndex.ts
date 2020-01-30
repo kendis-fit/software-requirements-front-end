@@ -4,5 +4,6 @@ export default interface IIndex
 {
     Name: string;
     NameIndex: string;
+    Description: string;
     Coefficients: ICoefficient[];
 }

@@ -71,11 +71,7 @@ const ShowDiagram = ({ Requirement }: IShowDiagram) => {
                 type: "radar",
                 data: marksData,
                 options: {
-                    scales: {
-                        scaleLabel: {
-                            fontSize: 16
-                        }
-                    }
+                    
                 }
             });
         }

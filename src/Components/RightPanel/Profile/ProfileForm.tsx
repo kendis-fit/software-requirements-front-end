@@ -17,6 +17,7 @@ import ERequirementWrite from "../../../Constants/Enumerations/ERequirementWrite
 
 import calculation from "../../../Images/Calculation.gif";
 import visualisation from "../../../Images/Visualisation.gif";
+import information from "../../../Images/Information.gif";
 
 interface IProfileForm
 {
@@ -71,6 +72,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                 <ButtonWithImage data-close={false} disabled={Requirement.Write === ERequirementWrite.CREATED} type="button" onClick={() => ShowDiagram(I.NameIndex)}>
                                     <img data-close={false} src={visualisation} width={50} height={50} alt="visualisation" />
                                 </ButtonWithImage>
+                                <img data-close={false} src={information} width={50} height={50} alt="information" title={I.Description} style={{ cursor: "help" }} />
                                 <FlexBlock Direction={EDirection.COLUMN}>
                                     <FlexBlock Direction={EDirection.ROW}>
                                     {
@@ -92,6 +94,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                                     c.Metric && 
                                                     <>
                                                         <TextSpace title={c.Metric.NameMetric}>{c.Metric.Name}</TextSpace>
+                                                        <img src={information} width={25} height={25} alt="information" title={I.Description} style={{ cursor: "help", marginRight: "2px" }} />
                                                         <Item UpdateProfile={(value) => 
                                                         UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex, Value: value })}
                                                         ReadOnly={c.Metric.Primitives ? true : false} Value={c.Metric.Value} />
