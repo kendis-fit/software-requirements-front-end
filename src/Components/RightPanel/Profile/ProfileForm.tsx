@@ -33,7 +33,7 @@ interface IProfileForm
 const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitUpdateProfile, ShowResult, ShowDiagram }: IProfileForm) => {
     if (LoadProfile)
         return <span>Loading...</span>
-    if (Indexes === null || Indexes.length === 0)
+    if (Indexes === null || Indexes.length === 0 || Requirement === null)
         return <IndexesEmpty Text={Indexes === null ? "Group doesn't have profile" : "Empty" } />
     
     const isCoeffsEqual1 = (coeffs: ICoefficient[]): boolean => {
