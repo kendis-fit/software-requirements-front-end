@@ -94,7 +94,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                                     c.Metric && 
                                                     <>
                                                         <TextSpace title={c.Metric.NameMetric}>{c.Metric.Name}</TextSpace>
-                                                        <img src={information} width={25} height={25} alt="information" title={I.Description} style={{ cursor: "help", marginRight: "2px" }} />
+                                                        <img src={information} width={25} height={25} alt="information" title={c.Metric.Description} style={{ cursor: "help", marginRight: "2px" }} />
                                                         <Item UpdateProfile={(value) => 
                                                         UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex, Value: value })}
                                                         ReadOnly={c.Metric.Primitives ? true : false} Value={c.Metric.Value} />
@@ -105,6 +105,7 @@ const ProfileForm = ({ Requirement, Indexes, LoadProfile, UpdateProfile, SubmitU
                                                                 c.Metric.Primitives.map((p, i) => 
                                                                 <Fragment key={i}>
                                                                         <TextSpace>{p.Name}</TextSpace>
+                                                                        <img src={information} width={25} height={25} alt="information" title={p.Description} style={{ cursor: "help", marginRight: "2px" }} />
                                                                         <Item UpdateProfile={(value) =>
                                                                         UpdateProfile({ NameCoefficient: c.Name, NameMetric: c.Metric!.Name, NameIndex: I.NameIndex,
                                                                             NamePrimitive: p.Name, Value: value })}
