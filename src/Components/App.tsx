@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Home from "./Pages/Home";
+import ListProjects from "./Pages/ListProject";
 import AlertListContainer from "../Containers/AlertListContainer";
-import ControlPanelContainer from "../Containers/ControlPanelContainer";
 
 import IMenu from "../Interfaces/IMenu";
 import EMenu from "../Constants/Enumerations/EMenu";
@@ -12,6 +12,7 @@ import IDisplayMenu from "../Interfaces/IDisplayMenu";
 import { ShowMenu } from "../Actions/MenuActions";
 
 import "../root.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = ({ ShowMenu }: IDisplayMenu) => {
 	return (
@@ -19,8 +20,12 @@ const App = ({ ShowMenu }: IDisplayMenu) => {
 				if (!e.target.dataset.close)
 					ShowMenu({ Name: EMenu.NONE })
 			} }>
-			<ControlPanelContainer />
-			<Home />
+			<BrowserRouter>
+				<Switch>
+					<Route exact={true} path="/" component={Home} />
+					<Route exact={true} path="/projects" component={ListProjects} />
+				</Switch>
+			</BrowserRouter>
 			<AlertListContainer />
 		</div>
 	);

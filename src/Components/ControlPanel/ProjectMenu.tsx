@@ -5,6 +5,7 @@ import { ContextBlock, ContextItemBlock } from "../Styles/Block";
 import IPosition from "../../Interfaces/IPosition";
 import EMenu from "../../Constants/Enumerations/EMenu";
 import IDisplayMenu from "../../Interfaces/IDisplayMenu";
+import { Link } from "react-router-dom";
 
 interface IProjectMenu extends IPosition, IDisplayMenu 
 {
@@ -19,7 +20,7 @@ const ProjectMenu = ({ SetRequirement, ShowMenu, X, Y }: IProjectMenu) => {
                 ShowMenu({ Name: EMenu.CREATE_PROJECT })
             }}>Create project</ContextItemBlock>
             <ContextItemBlock>Open project from file</ContextItemBlock>
-            <ContextItemBlock>Open project from list</ContextItemBlock>
+            <ContextItemBlock><Link to="/projects">Open project from list</Link></ContextItemBlock>
         </ContextBlock>
     );
 }
